@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calculate your monthly mortgage payments and view an amortization schedule with our free Canada Mortgage Calculator. Easy to use and accurate.">
+    <meta name="description" content="Canada Mortgage Calculator - Calculate monthly payments, view amortization schedule, and understand your mortgage costs with AgentDecks.">
     <meta name="keywords" content="Canada Mortgage Calculator, Mortgage Amortization, Home Loan Calculator, Monthly Payments, Mortgage Interest, CMHC Insurance">
     <meta name="author" content="AgentDecks - Professional Client Presentations">
     <title>Canada Mortgage Calculator - AgentDecks</title>
@@ -20,43 +20,31 @@
     </div>
 
     <h1 class="text-3xl font-bold mb-4">Canada Mortgage Calculator</h1>
-    <p class="text-lg mb-6 text-gray-700">Easily calculate your monthly mortgage payments and view an amortization schedule. This tool helps you understand how much you will pay over time for your mortgage.</p>
-
     <div class="max-w-xl mx-auto bg-white p-6 rounded-md shadow-md">
-        <div class="mb-4">
-            <label class="block text-left font-semibold">Purchase Price ($):</label>
-            <input type="number" id="purchasePrice" class="border p-2 w-full" placeholder="Enter purchase price">
-        </div>
-        
-        <div class="mb-4">
-            <label class="block text-left font-semibold">Down Payment (%):</label>
-            <select id="downPaymentType" class="border p-2 w-full">
-                <option value="5">5% on first $500,000 + 10% on remainder</option>
-                <option value="10">10% on full price</option>
-                <option value="20">20% or more (No CMHC)</option>
-            </select>
-        </div>
+        <label>Purchase Price ($)</label>
+        <input type="number" id="purchasePrice" class="border p-2 w-full mb-4" placeholder="Enter purchase price">
 
-        <div class="mb-4">
-            <label class="block text-left font-semibold">Interest Rate (%):</label>
-            <input type="number" id="interestRate" class="border p-2 w-full" value="4.5">
-        </div>
+        <label>Down Payment (%)</label>
+        <select id="downPaymentType" class="border p-2 w-full mb-4">
+            <option value="5">5% on first $500,000 + 10% on remainder</option>
+            <option value="10">10% on full price</option>
+            <option value="20">20% or more (No CMHC)</option>
+        </select>
 
-        <div class="mb-4">
-            <label class="block text-left font-semibold">Amortization Period:</label>
-            <select id="amortizationPeriod" class="border p-2 w-full">
-                <option value="25">25 years</option>
-                <option value="30">30 years</option>
-            </select>
-        </div>
+        <label>Interest Rate (%)</label>
+        <input type="number" id="interestRate" class="border p-2 w-full mb-4" value="4.5">
 
-        <div class="mb-4">
-            <label class="block text-left font-semibold">Start Date:</label>
-            <input type="date" id="startDate" class="border p-2 w-full" value="2025-04-21">
-        </div>
+        <label>Amortization Period</label>
+        <select id="amortizationPeriod" class="border p-2 w-full mb-4">
+            <option value="25">25 years</option>
+            <option value="30">30 years</option>
+        </select>
+
+        <label>Start Date</label>
+        <input type="date" id="startDate" class="border p-2 w-full mb-4" value="2025-04-21">
 
         <button onclick="calculateMortgage()" class="bg-blue-600 text-white px-6 py-3 mt-4 rounded-md font-bold hover:bg-blue-700 transition">Calculate</button>
-
+        
         <div id="result" class="mt-4 text-xl font-bold"></div>
     </div>
 
