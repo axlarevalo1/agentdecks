@@ -12,6 +12,23 @@
   <link rel="stylesheet" href="public/mortgage-amortization.css">
   <!-- Tailwind CSS CDN for Styling -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .section-subcontent {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+    
+    .section-subcontent.active {
+        max-height: 1000px; /* Adjust based on content size */
+    }
+    
+    .collapsible-section {
+        border-left: 3px solid #2563eb;
+        padding-left: 1rem;
+        margin: 1rem 0;
+    }
+</style>
 </head>
 <body class="bg-gray-50 font-sans py-16 text-center">
 
@@ -236,5 +253,29 @@ document.getElementById('startDate').valueAsDate = new Date();
   </footer>
 
 <script src="public/mortgage-amortization.js"></script>
+  <script>
+function toggleSection(sectionId) {
+    const sections = {
+        pro: {
+            content: document.getElementById('proSection'),
+            icon: document.querySelector('[onclick="toggleSection(\'pro\')] span')
+        },
+        client: {
+            content: document.getElementById('clientSection'),
+            icon: document.querySelector('[onclick="toggleSection(\'client\')] span')
+        },
+        why: {
+            content: document.getElementById('whySection'),
+            icon: document.querySelector('[onclick="toggleSection(\'why\')] span')
+        }
+    };
+
+    if (sections[sectionId]) {
+        const section = sections[sectionId];
+        section.content.classList.toggle('active');
+        section.icon.textContent = section.content.classList.contains('active') ? '▼' : '►';
+    }
+}
+</script>
 </body>
 </html>
