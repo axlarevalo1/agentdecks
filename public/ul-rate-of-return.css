@@ -47,3 +47,10 @@ footer {
     max-width: 400px;
     margin-top: 16px;
 }
+
+/* End Value Styling */
+#endValue {
+  background-color: #f3f4f6; /* Light gray */
+  font-weight: bold;
+  cursor: not-allowed; /* Show it's not editable */
+}
