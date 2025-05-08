@@ -32,7 +32,7 @@
     <h3 class="text-2xl font-bold text-gray-700 mt-6">Monthly Investment</h3>
     <div class="space-y-4 mt-4 text-left">
         <label class="block text-gray-700 font-semibold">Monthly Investment Amount ($)</label>
-        <input type="number" id="monthlyInvestment" class="border rounded-md w-full p-2" placeholder="Enter monthly amount" oninput="syncInvestment()" required>
+        <input type="number" id="monthlyInvestment" class="border rounded-md w-full p-2" placeholder="Enter monthly amount" required oninput="syncInvestment()">
 
         <label class="block text-gray-700 font-semibold">Projected Rate of Return (%)</label>
         <input type="number" id="rateOfReturn" class="border rounded-md w-full p-2" value="5" required oninput="syncInvestment()">
@@ -42,16 +42,16 @@
     </div>
 
     <!-- Lump Sum Investment Section -->
-    <h3 class="text-2xl font-bold text-gray-700 mt-8">Lump Sum Investment</h3>
+    <h3 class="text-2xl font-bold text-gray-700 mt-8">Lump-Sum Investment</h3>
     <div class="space-y-4 mt-4 text-left">
-        <label class="block text-gray-700 font-semibold">Total Investment Loan (Auto-calculated)</label>
-        <input type="number" id="investmentLoan" class="border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly>
-
         <label class="block text-gray-700 font-semibold">Monthly Loan Obligation (Synced)</label>
         <input type="number" id="monthlyLoan" class="border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly>
 
+        <label class="block text-gray-700 font-semibold">Total Investment Loan</label>
+        <input type="number" id="investmentLoan" class="border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly>
+
         <label class="block text-gray-700 font-semibold">Investment Loan Term</label>
-        <select id="loanTerm" class="border rounded-md w-full p-2" onchange="calculateInvestments()">
+        <select id="loanTerm" class="border rounded-md w-full p-2" onchange="syncInvestment()">
             <option value="0">Interest Only (Default)</option>
             <option value="3">3 Years</option>
             <option value="5">5 Years</option>
@@ -60,7 +60,7 @@
         </select>
 
         <label class="block text-gray-700 font-semibold">Investment Loan Interest Rate (%)</label>
-        <input type="number" id="loanInterestRate" class="border rounded-md w-full p-2" value="5" required oninput="calculateInvestments()">
+        <input type="number" id="loanInterestRate" class="border rounded-md w-full p-2" value="5" required oninput="syncInvestment()">
     </div>
 
     <!-- Calculate Button -->
@@ -71,50 +71,30 @@
     <!-- Results Section -->
     <div class="mt-6 text-left">
         <h3 class="font-bold text-lg text-gray-700">Results:</h3>
-        <p>Final Monthly Investment Account Balance: <span id="monthlyBalanceResult">$0.00</span></p>
-        <p>Final Lump-Sum Investment Account Balance: <span id="lumpSumBalanceResult">$0.00</span></p>
-        <p>Total Loan Balance: <span id="loanBalanceResult">$0.00</span></p>
-        <p>Total Net Equity: <span id="netEquityResult">$0.00</span></p>
+        <div class="bg-gray-50 p-4 rounded-md shadow-md mt-4">
+            <p class="font-semibold text-gray-700">Final Monthly Investment Account Balance:</p>
+            <p class="text-2xl font-bold text-blue-600" id="monthlyBalanceResult">$0.00</p>
+
+            <p class="font-semibold text-gray-700 mt-4">Final Lump-Sum Investment Account Balance:</p>
+            <p class="text-2xl font-bold text-green-600" id="lumpSumBalanceResult">$0.00</p>
+
+            <p class="font-semibold text-gray-700 mt-4">Total Loan Balance:</p>
+            <p class="text-2xl font-bold text-red-600" id="loanBalanceResult">$0.00</p>
+
+            <p class="font-semibold text-gray-700 mt-4">Total Net Equity:</p>
+            <p class="text-2xl font-bold text-blue-800" id="netEquityResult">$0.00</p>
+        </div>
     </div>
 </section>
 
-<!-- JavaScript for Calculation -->
-<script>
-function syncInvestment() {
-    const monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value) || 0;
-    const years = parseFloat(document.getElementById("investmentYears").value) || 0;
-    document.getElementById("monthlyLoan").value = monthlyInvestment;
-    document.getElementById("investmentLoan").value = (monthlyInvestment * 12 * years).toFixed(2);
-    calculateInvestments();
-}
+<!-- Disclaimer -->
+<p class="text-sm text-gray-600 mt-4 text-center max-w-3xl mx-auto">
+    Disclaimer: Some rates may be variable. Be aware of your risk tolerance. Investments may drop lower than the loan value, resulting in negative equity.
+    This tool is for informational purposes only. Consult your professional advisor.
+</p>
 
-function calculateInvestments() {
-    const monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value) || 0;
-    const rateOfReturn = parseFloat(document.getElementById("rateOfReturn").value) / 100;
-    const years = parseFloat(document.getElementById("investmentYears").value) || 0;
-
-    // Monthly Investment Calculation
-    let monthlyBalance = 0;
-    for (let i = 0; i < years * 12; i++) {
-        monthlyBalance = (monthlyBalance + monthlyInvestment) * (1 + rateOfReturn / 12);
-    }
-
-    // Lump Sum Investment Calculation
-    const lumpSumInvestment = monthlyInvestment * 12 * years;
-    const lumpSumBalance = lumpSumInvestment * Math.pow(1 + rateOfReturn, years);
-
-    const loanInterestRate = parseFloat(document.getElementById("loanInterestRate").value) / 100;
-    const loanTerm = parseInt(document.getElementById("loanTerm").value);
-    let loanBalance = loanTerm === 0 ? lumpSumInvestment : lumpSumInvestment * Math.pow(1 + loanInterestRate, years);
-    const netEquity = lumpSumBalance - loanBalance;
-
-    // Display Results
-    document.getElementById("monthlyBalanceResult").innerText = `$${monthlyBalance.toFixed(2)}`;
-    document.getElementById("lumpSumBalanceResult").innerText = `$${lumpSumBalance.toFixed(2)}`;
-    document.getElementById("loanBalanceResult").innerText = `$${loanBalance.toFixed(2)}`;
-    document.getElementById("netEquityResult").innerText = `$${netEquity.toFixed(2)}`;
-}
-</script>
-
+<!-- JavaScript Link -->
+<script src="public/lump-sum-vs-monthly.js"></script>
 </body>
+
 </html>
