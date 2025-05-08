@@ -14,34 +14,44 @@
   <div class="max-w-2xl mx-auto bg-white p-6 rounded-md shadow-md">
     <h1 class="text-3xl font-bold mb-4">Sale vs Refinance Calculator</h1>
 
-    <!-- Refinance Section -->
-    <h2 class="text-2xl font-bold mb-3 text-blue-600">Refinance Calculator</h2>
-    <label>Current Property Value ($)</label>
-    <input type="number" id="propertyValue" class="border p-2 w-full mb-3" placeholder="Enter current property value" oninput="calculateRefinance()">
+<!-- Refinance Section -->
+<h2 class="text-2xl font-bold mb-3 text-blue-600">Refinance Calculator</h2>
+<label>Current Property Value ($)</label>
+<input type="number" id="propertyValue" class="border p-2 w-full mb-3" placeholder="Enter current property value" oninput="calculateRefinance()">
 
-    <label>Loan to Value (LTV)</label>
-    <select id="ltv" class="border p-2 w-full mb-3" onchange="calculateRefinance()">
-        <option value="65">65% - Straight Equity Line of Credit</option>
-        <option value="75">75% - Self-Employed/B-Lender Refinance</option>
-        <option value="80" selected>80% - Typical Refinance</option>
-        <option value="85">85% - Some HELOCs</option>
-    </select>
+<label>Loan to Value (LTV)</label>
+<select id="ltv" class="border p-2 w-full mb-3" onchange="updateTermOptions(); calculateRefinance()">
+    <option value="65">65% - Straight Equity Line of Credit</option>
+    <option value="75">75% - Self-Employed/B-Lender Refinance</option>
+    <option value="80" selected>80% - Typical Refinance</option>
+    <option value="85">85% - Some HELOCs</option>
+</select>
 
-    <label>Maximum Loan Amount ($ - Auto Calculated)</label>
-    <input type="text" id="maxLoanAmount" class="border p-2 w-full mb-3 bg-gray-100 text-gray-600" readonly>
+<label>Mortgage Term</label>
+<select id="mortgageTerm" class="border p-2 w-full mb-3" onchange="calculateRefinance()">
+    <option value="15">15 Years</option>
+    <option value="20">20 Years</option>
+    <option value="25" selected>25 Years</option>
+    <option value="30">30 Years</option>
+</select>
 
-    <label>Current Mortgage Balance ($)</label>
-    <input type="number" id="currentMortgage" class="border p-2 w-full mb-3">
+<label>Interest Rate (%)</label>
+<input type="number" id="interestRate" class="border p-2 w-full mb-3" value="4.5" step="0.01" oninput="calculateRefinance()">
 
-    <label>Mortgage Penalty (if known) ($)</label>
-    <input type="number" id="mortgagePenalty" class="border p-2 w-full mb-3">
+<label>Maximum Loan Amount ($ - Auto Calculated)</label>
+<input type="text" id="maxLoanAmount" class="border p-2 w-full mb-3 bg-gray-100 text-gray-600" readonly>
 
-    <div class="mt-4 text-left">
-      <h3 class="font-bold text-lg text-blue-600">Refinance Results:</h3>
-      <p>Proceeds upon refinance: <span id="refinanceProceeds">$0.00</span></p>
-      <p>Monthly mortgage payment: <span id="monthlyPayment">$0.00</span></p>
-    </div>
-  </div>
+<label>Current Mortgage Balance ($)</label>
+<input type="number" id="currentMortgage" class="border p-2 w-full mb-3">
+
+<label>Mortgage Penalty (if known) ($)</label>
+<input type="number" id="mortgagePenalty" class="border p-2 w-full mb-3">
+
+<div class="mt-4 text-left">
+  <h3 class="font-bold text-lg text-blue-600">Refinance Results:</h3>
+  <p>Proceeds upon refinance: <span id="refinanceProceeds">$0.00</span></p>
+  <p>Monthly mortgage payment: <span id="monthlyPayment">$0.00</span></p>
+</div>
 
   <div class="max-w-2xl mx-auto bg-white p-6 mt-6 rounded-md shadow-md">
     <!-- Sale Section -->
