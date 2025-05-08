@@ -5,23 +5,26 @@ function syncInvestment() {
     const term = parseInt(document.getElementById("loanTerm").value);
     const years = parseFloat(document.getElementById("investmentYears").value) || 0;
 
-    // Sync Projected Rate of Return for Lump-Sum
-    document.getElementById("lumpSumRate").value = document.getElementById("rateOfReturn").value;
+    // Sync Monthly Loan Obligation with Monthly Investment
+    document.getElementById("monthlyLoan").value = monthlyInvestment;
 
-    // Calculate Total Investment Loan (Principal)
+    // Calculate Total Investment Loan (Principal) Dynamically
+    let loanPrincipal = 0;
     if (term === 0) {
-        document.getElementById("investmentLoan").value = (monthlyInvestment * 12 * years).toFixed(2);
+        // Interest Only Loan: Principal is the total of monthly payments over the years
+        loanPrincipal = monthlyInvestment * 12 * years;
     } else {
+        // Amortized Loan Calculation (Principal derived from monthly payments)
         const monthlyRate = rate / 12;
         const totalPayments = term * 12;
-        const loanPrincipal = (monthlyInvestment * (1 - Math.pow(1 + monthlyRate, -totalPayments))) / monthlyRate;
-        document.getElementById("investmentLoan").value = loanPrincipal.toFixed(2);
+        loanPrincipal = (monthlyInvestment * (1 - Math.pow(1 + monthlyRate, -totalPayments))) / monthlyRate;
     }
 
-    // Sync Total Initial Investment with Total Investment Loan
-    document.getElementById("initialInvestment").value = document.getElementById("investmentLoan").value;
+    // Auto-populate Initial Investment and Total Investment Loan
+    document.getElementById("investmentLoan").value = loanPrincipal.toFixed(2);
+    document.getElementById("initialInvestment").value = loanPrincipal.toFixed(2);
+    document.getElementById("lumpSumRate").value = document.getElementById("rateOfReturn").value;
 
-    // Calculate Results Immediately
     calculateInvestments();
 }
 
@@ -38,7 +41,7 @@ function calculateInvestments() {
         monthlyBalance = (monthlyBalance + monthlyInvestment) * (1 + rateOfReturn / 12);
     }
 
-    // Calculate Lump-Sum Investment (Principal Grows at Rate of Return)
+    // Calculate Lump-Sum Investment Compound Growth
     const lumpSumBalance = initialInvestment * Math.pow(1 + rateOfReturn, years);
 
     // Calculate Loan Balance (Interest-Only or Amortized)
@@ -55,10 +58,10 @@ function calculateInvestments() {
         const monthlyRate = loanInterestRate / 12;
         const totalPayments = loanTerm * 12;
         const monthlyLoanPayment = (loanPrincipal * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -totalPayments));
-        loanBalance = 0;
+        loanBalance = loanPrincipal;
 
         for (let i = 0; i < years * 12; i++) {
-            loanBalance = (loanBalance + monthlyLoanPayment) * (1 + monthlyRate) - monthlyLoanPayment;
+            loanBalance = (loanBalance * (1 + monthlyRate)) - monthlyLoanPayment;
         }
         loanBalance = Math.max(0, loanBalance);
     }
