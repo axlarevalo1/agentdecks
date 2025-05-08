@@ -12,6 +12,16 @@
   <link rel="stylesheet" href="public/mortgage-amortization.css">
   <!-- Tailwind CSS CDN for Styling -->
   <script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* TEMPORARY FIX - MOVE TO CSS FILE LATER */
+.section-subcontent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.section-subcontent.active { max-height: 1000px; }
+.collapsible-section { border-left: 3px solid #2563eb; padding-left: 1rem; margin: 1rem 0; }
+</style>
 </head>
 <body class="bg-gray-50 font-sans py-16 text-center">
 
@@ -38,65 +48,69 @@
 
       <div id="mainSection" class="section-content">
     <!-- Professional Advantage Section -->
+<div class="prose max-w-2xl mx-auto my-8">
+    <h2 class="text-2xl font-bold text-blue-600 mb-4 cursor-pointer flex items-center" onclick="toggleSection('main')">
+        <span class="mr-2">▼</span> Why This Mortgage Calculator is a powerful tool for Realtors and Home Buyers
+    </h2>
+
+    <div id="mainSection" class="section-content">
+        <!-- Professional Advantage Section -->
         <div class="collapsible-section">
-          <h3 class="text-xl font-semibold mb-3 cursor-pointer flex items-center" onclick="toggleSection('pro')">
-            <span class="mr-2">►</span> 🏆 Professional Advantage for Realtors
-          </h3>
-          <div id="proSection" class="section-subcontent hidden pl-6">
-            <p class="mb-4">This tool elevates your client consultations by providing:</p>
-            <ul class="list-disc pl-6 space-y-3">
-              <li><strong>CMHC Premium Automation</strong> - Unlike generic calculators, we automatically factor in mortgage insurance premiums</li>
-              <li><strong>Tiered Down Payment Precision</strong> - Instant calculations for complex scenarios</li>
-            </ul>
-          </div>
-        </div>
-
-
-    <!-- Client Value Section -->
-        <div class="collapsible-section mt-4">
-          <h3 class="text-xl font-semibold mb-3 cursor-pointer flex items-center" onclick="toggleSection('client')">
-            <span class="mr-2">►</span> 📈 Client Value Proposition
-          </h3>
-          <div id="clientSection" class="section-subcontent hidden pl-6">
-            <div class="flex items-start mb-4">
-              <div class="bg-blue-100 p-2 rounded-lg mr-3">✅</div>
-              <div>
-                <h4 class="font-semibold">No More Guesswork</h4>
-                <p class="text-sm text-gray-600">Eliminate complex manual calculations for:</p>
-                <ul class="list-disc pl-5 text-sm text-gray-600 mt-1">
-                  <li>CMHC premium adjustments</li>
-                  <li>Mixed down payment tiers</li>
+            <h3 class="text-xl font-semibold mb-3 cursor-pointer flex items-center" onclick="toggleSection('pro')">
+                <span class="mr-2">►</span> 🏆 Professional Advantage for Realtors
+            </h3>
+            <div id="proSection" class="section-subcontent hidden pl-6">
+                <p class="mb-4">This tool elevates your client consultations by providing:</p>
+                <ul class="list-disc pl-6 space-y-3">
+                    <li><strong>CMHC Premium Automation</strong> - Unlike generic calculators, we automatically factor in mortgage insurance premiums</li>
+                    <li><strong>Tiered Down Payment Precision</strong> - Instant calculations for complex scenarios</li>
                 </ul>
-              </div>
             </div>
-          </div>
         </div>
+
+        <!-- Client Value Section -->
         <div class="collapsible-section mt-4">
-          <h3 class="text-xl font-semibold mb-3 cursor-pointer flex items-center" onclick="toggleSection('why')">
-            <span class="mr-2">►</span> 🔍 Why This Matters
-          </h3>
-          <div id="whySection" class="section-subcontent hidden pl-6">
-            <p class="text-sm">"83% of first-time buyers underestimate hidden costs*</p>
-            <div class="grid grid-cols-2 gap-4 mt-3">
-              <div class="text-center">
-                <div class="text-blue-600 text-xl font-bold">$15k+</div>
-                <div class="text-xs">Potential CMHC Savings</div>
-              </div>
-              <div class="text-center">
-                <div class="text-blue-600 text-xl font-bold">2.5x</div>
-                <div class="text-xs">Faster Scenario Analysis</div>
-              </div>
+            <h3 class="text-xl font-semibold mb-3 cursor-pointer flex items-center" onclick="toggleSection('client')">
+                <span class="mr-2">►</span> 📈 Client Value Proposition
+            </h3>
+            <div id="clientSection" class="section-subcontent hidden pl-6">
+                <div class="flex items-start mb-4">
+                    <div class="bg-blue-100 p-2 rounded-lg mr-3">✅</div>
+                    <div>
+                        <h4 class="font-semibold">No More Guesswork</h4>
+                        <p class="text-sm text-gray-600">Eliminate complex manual calculations for:</p>
+                        <ul class="list-disc pl-5 text-sm text-gray-600 mt-1">
+                            <li>CMHC premium adjustments</li>
+                            <li>Mixed down payment tiers</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+
+        <!-- Why This Matters Section -->
+        <div class="collapsible-section mt-4">
+            <h3 class="text-xl font-semibold mb-3 cursor-pointer flex items-center" onclick="toggleSection('why')">
+                <span class="mr-2">►</span> 🔍 Why This Matters
+            </h3>
+            <div id="whySection" class="section-subcontent hidden pl-6">
+                <p class="text-sm">"83% of first-time buyers underestimate hidden costs*</p>
+                <div class="grid grid-cols-2 gap-4 mt-3">
+                    <div class="text-center">
+                        <div class="text-blue-600 text-xl font-bold">$15k+</div>
+                        <div class="text-xs">Potential CMHC Savings</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-blue-600 text-xl font-bold">2.5x</div>
+                        <div class="text-xs">Faster Scenario Analysis</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-  <p class="mt-4 text-sm text-gray-500">Click headers to expand/collapse sections</p>
-</div>
-      
-
-  <p class="mt-6 text-gray-600">This tool transforms complex mortgage math into clear, visual outcomes - helping you demonstrate value while saving hours of manual calculations.</p>
+    <p class="mt-4 text-sm text-gray-500">Click headers to expand/collapse sections</p>
+    <p class="mt-6 text-gray-600">This tool transforms complex mortgage math into clear, visual outcomes - helping you demonstrate value while saving hours of manual calculations.</p>
 </div>
     
 <!-- Calculator Container -->
@@ -236,17 +250,6 @@ document.getElementById('startDate').valueAsDate = new Date();
   </footer>
 
 <script src="public/mortgage-amortization.js"></script>
-  html
-<style>
-/* TEMPORARY FIX - MOVE TO CSS FILE LATER */
-.section-subcontent {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-}
-.section-subcontent.active { max-height: 1000px; }
-.collapsible-section { border-left: 3px solid #2563eb; padding-left: 1rem; margin: 1rem 0; }
-</style>
-</body>
+  </body>
   
 </html>
