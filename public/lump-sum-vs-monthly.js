@@ -1,9 +1,20 @@
-let investmentChart;
+// Synchronize Monthly Investment to Loan Amount
+function syncInvestment() {
+    const monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value) || 0;
+    const years = parseFloat(document.getElementById("investmentYears").value) || 0;
 
+    document.getElementById("monthlyLoan").value = monthlyInvestment;
+    document.getElementById("investmentLoan").value = (monthlyInvestment * 12 * years).toFixed(2);
+    calculateInvestments();
+}
+
+// Calculate Investments
 function calculateInvestments() {
     const monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value) || 0;
     const rateOfReturn = parseFloat(document.getElementById("rateOfReturn").value) / 100;
     const years = parseFloat(document.getElementById("investmentYears").value) || 0;
+    const loanInterestRate = parseFloat(document.getElementById("loanInterestRate").value) / 100;
+    const loanTerm = parseInt(document.getElementById("loanTerm").value);
 
     // Monthly Investment Calculation
     let monthlyBalance = 0;
@@ -13,54 +24,34 @@ function calculateInvestments() {
 
     // Lump Sum Investment Calculation
     const lumpSumInvestment = monthlyInvestment * 12 * years;
-    const lumpSumBalance = lumpSumInvestment * Math.pow(1 + rateOfReturn, years);
+    let lumpSumBalance = lumpSumInvestment * Math.pow(1 + rateOfReturn, years);
+    let loanBalance = lumpSumInvestment; // Default interest-only
 
-    // Update the Chart
-    updateChart(monthlyBalance, lumpSumBalance);
-}
+    if (loanTerm === 0) {
+        // Interest Only Calculation
+        loanBalance = lumpSumInvestment;
+    } else {
+        // Amortizing Loan Calculation
+        const monthlyRate = loanInterestRate / 12;
+        const totalPayments = loanTerm * 12;
+        const monthlyLoanPayment = (lumpSumInvestment * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -totalPayments));
+        loanBalance = 0;
 
-function updateChart(monthlyBalance, lumpSumBalance) {
-    const ctx = document.getElementById('investmentChart').getContext('2d');
-    if (investmentChart) {
-        investmentChart.destroy();
+        for (let i = 0; i < years * 12; i++) {
+            loanBalance = (loanBalance + monthlyLoanPayment) * (1 + loanInterestRate / 12) - monthlyLoanPayment;
+        }
+        loanBalance = Math.max(0, loanBalance); // Prevent negative loan balance
     }
 
-    investmentChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Monthly Investment', 'Lump-Sum Investment'],
-            datasets: [{
-                label: 'Final Value ($)',
-                data: [monthlyBalance, lumpSumBalance],
-                backgroundColor: ['#4A90E2', '#50E3C2']
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return '$' + value.toLocaleString();
-                        }
-                    }
-                }
-            },
-            plugins: {
-                tooltip: {
-                    enabled: true,
-                    callbacks: {
-                        label: function(context) {
-                            return 'Final Value: $' + context.raw.toFixed(2).toLocaleString();
-                        }
-                    }
-                },
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
+    const netEquity = lumpSumBalance - loanBalance;
+
+    // Display Results
+    document.getElementById("monthlyBalanceResult").innerText = `$${monthlyBalance.toFixed(2)}`;
+    document.getElementById("lumpSumBalanceResult").innerText = `$${lumpSumBalance.toFixed(2)}`;
+    document.getElementById("loanBalanceResult").innerText = `$${loanBalance.toFixed(2)}`;
+    document.getElementById("netEquityResult").innerText = `$${netEquity.toFixed(2)}`;
 }
+
+// Auto-calculate whenever interest rate or loan term is changed
+document.getElementById("loanTerm").addEventListener("change", calculateInvestments);
+document.getElementById("loanInterestRate").addEventListener("input", calculateInvestments);
