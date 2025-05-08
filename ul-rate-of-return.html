@@ -8,90 +8,96 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0795527334455170"
      crossorigin="anonymous"></script>
   <title>Universal Life Rate of Return Calculator - AgentDecks</title>
-  <link rel="stylesheet" href="public/ul-rate-of-return.css">
-  <!-- Tailwind CSS CDN for Styling -->
+  <link rel="stylesheet" href="ul-rate-of-return.css">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Custom CSS for grayed-out input */
-    #endValue {
-      background-color: #f3f4f6;
-      font-weight: bold;
-      cursor: not-allowed;
-    }
-  </style>
 </head>
-<body class="bg-gray-50 font-sans text-center py-16">
-  
-  <!-- Site Header -->
-  <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center text-blue-600">
-    <div class="text-2xl font-bold">
-        <a href="index.html" class="text-blue-600 hover:text-blue-800">AgentDecks</a>
+<body>
+  <!-- Blue Header -->
+  <header class="site-header">
+    <div class="header-content">
+      <a href="index.html" class="site-title">AgentDecks</a>
+      <nav>
+        <a href="index.html" class="back-link">&larr; Back to Home</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Back to Home Button -->
-  <div style="margin-bottom: 15px;">
-    <a href="index.html" class="text-blue-600 hover:text-blue-800 font-semibold">&larr; Back to Home</a>
-  </div>
+  <main class="calculator-container">
+    <!-- Calculator Heading -->
+    <h1 class="calculator-title">Universal Life Rate of Return Calculator</h1>
 
-  <h1 class="text-3xl font-bold mb-4">Universal Life Rate of Return Calculator</h1>
-
-  <!-- Learn More Section -->
-  <div class="mt-6 max-w-md mx-auto text-center bg-white p-4 rounded-md shadow-md text-gray-700">
-    <center>
-      <h3 class="text-xl font-bold mb-2 cursor-pointer flex justify-between items-center" onclick="toggleLearnMore()" style="user-select: none;">
-        📘 Learn More about Universal Life Rate of Return 
+    <!-- Learn More Section -->
+    <div class="learn-more-section">
+      <div class="learn-more-header" onclick="toggleLearnMore()">
+        <span>📘 Learn More About Universal Life Rate of Return</span>
         <span id="learnMoreIcon">+</span>
-      </h3>
-    </center>  
-    <div id="learnMoreContent" class="learn-more hidden text-sm leading-relaxed mt-2">
-      <p>Universal Life insurance policies allow for both protection and investment growth...</p>
-      <!-- Keep your existing learn more content here -->
+      </div>
+      <div id="learnMoreContent" class="learn-more-content hidden">
+        <p>Universal Life insurance policies combine protection with investment growth...</p>
+      </div>
     </div>
-  </div>
 
-  <!-- Calculator Form -->
-  <div class="max-w-md w-full bg-white p-6 rounded-md shadow-md text-left mx-auto">
-    <!-- All inputs have oninput="updateEndValue()" -->
-    <label>Fund Value at Start of Year ($) <span title="The fund value at the beginning of the year.">🛈</span></label>
-    <input type="number" id="startValue" class="border p-2 w-full mb-4" placeholder="Enter starting fund value" oninput="updateEndValue()">
+    <!-- Calculator Form -->
+    <div class="calculator-form">
+      <!-- Input Fields -->
+      <div class="input-group">
+        <label>Fund Value at Start of Year ($) <span class="info-icon">🛈</span></label>
+        <input type="number" id="startValue" class="form-input" oninput="updateEndValue()">
+      </div>
 
-    <label>Periodic Deposits ($) <span title="Regular deposits made during the year.">🛈</span></label>
-    <input type="number" id="deposits" class="border p-2 w-full mb-4" placeholder="Enter periodic deposit amount" oninput="updateEndValue()">
+      <!-- Repeat for other fields -->
+      <div class="input-group">
+        <label>Periodic Deposits ($) <span class="info-icon">🛈</span></label>
+        <input type="number" id="deposits" class="form-input" oninput="updateEndValue()">
+      </div>
 
-    <label>Deposit Frequency</label>
-    <select id="depositFrequency" class="border p-2 w-full mb-4" oninput="updateEndValue()">
-      <option value="12">Monthly</option>
-      <option value="4">Quarterly</option>
-      <option value="2">Semi-Annually</option>
-      <option value="1">Annually</option>
-    </select>
+      <div class="input-group">
+        <label>Deposit Frequency</label>
+        <select id="depositFrequency" class="form-input" oninput="updateEndValue()">
+          <option value="12">Monthly</option>
+          <option value="4">Quarterly</option>
+          <option value="2">Semi-Annually</option>
+          <option value="1">Annually</option>
+        </select>
+      </div>
 
-    <label>Interest/Investment Growth Credited ($) <span title="Total interest/growth credited.">🛈</span></label>
-    <input type="number" id="interest" class="border p-2 w-full mb-4" placeholder="Enter interest/growth credited" oninput="updateEndValue()">
+      <div class="input-group">
+        <label>Interest Credited ($) <span class="info-icon">🛈</span></label>
+        <input type="number" id="interest" class="form-input" oninput="updateEndValue()">
+      </div>
 
-    <label>Bonus Credited (if any) ($) <span title="Any bonus interest credited.">🛈</span></label>
-    <input type="number" id="bonus" class="border p-2 w-full mb-4" placeholder="Enter bonus credited (if any)" oninput="updateEndValue()">
+      <div class="input-group">
+        <label>Bonus Credited ($) <span class="info-icon">🛈</span></label>
+        <input type="number" id="bonus" class="form-input" oninput="updateEndValue()">
+      </div>
 
-    <label>Annual Charges (Total Deductions) ($) <span title="Total deductions including fees.">🛈</span></label>
-    <input type="number" id="charges" class="border p-2 w-full mb-4" placeholder="Enter total deductions" oninput="updateEndValue()">
+      <div class="input-group">
+        <label>Annual Charges ($) <span class="info-icon">🛈</span></label>
+        <input type="number" id="charges" class="form-input" oninput="updateEndValue()">
+      </div>
 
-    <label>Fund Value at End of Year ($) <span title="Automatically calculated value.">🛈</span></label>
-    <input type="number" id="endValue" class="border p-2 w-full mb-4" readonly>
+      <!-- Auto-calculated End Value -->
+      <div class="input-group">
+        <label>Fund Value at End of Year ($) <span class="info-icon">🛈</span></label>
+        <input type="number" id="endValue" class="form-input calculated-value" readonly>
+      </div>
 
-    <button onclick="calculateULRateOfReturn()" class="bg-blue-600 text-white px-6 py-3 mt-4 rounded-md font-bold hover:bg-blue-700 transition w-full">
-      Calculate
-    </button>
-    
-    <div id="result" class="mt-4 text-xl font-bold text-center"></div>
-  </div>
+      <!-- Calculate Button -->
+      <button onclick="calculateULRateOfReturn()" class="calculate-btn">
+        Calculate Rate of Return
+      </button>
+
+      <!-- Results Display -->
+      <div id="result" class="results-container"></div>
+    </div>
+  </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 text-gray-600 text-center py-4 mt-8 text-sm">
+  <footer class="site-footer">
     <p>&copy; 2025 AgentDecks.com. All rights reserved.</p>
     <p>This calculator is for informational purposes only.</p>
   </footer>
 
-  <script src="public/ul-rate-of-return.js"></script>
+  <script src="ul-rate-of-return.js"></script>
 </body>
 </html>
