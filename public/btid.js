@@ -101,19 +101,3 @@ function renderBTIDGraph(months, values) {
         }
     });
 }
-
-/* Ensure Graph Area Does Not Overflow */
-.chart-container {
-    position: relative;
-    width: 100%;
-    max-width: 600px; /* Maximum width for graph */
-    height: 300px;
-    margin: 0 auto;
-}
-
-#btidChart {
-    width: 100% !important;
-    height: 100% !important;
-    max-height: 300px; /* Prevent stretching */
-    display: block;
-}
