@@ -1,3 +1,33 @@
+// Add to top of JS file
+const cityRates = {
+  "Calgary, AB": 0.0061803,
+  "Edmonton, AB": 0.0063231,
+  "Toronto, ON": 0.0066110,
+  "Vancouver, BC": 0.0058320,
+  "Montreal, QC": 0.0089450,
+  "Ottawa, ON": 0.0102310,
+  "Winnipeg, MB": 0.0078910,
+  "Halifax, NS": 0.0091230,
+  "Quebec City, QC": 0.0074510,
+  "Hamilton, ON": 0.0081120,
+  "Saskatoon, SK": 0.0078930,
+  "Regina, SK": 0.0076420
+};
+
+// Initialize city selector
+document.addEventListener('DOMContentLoaded', () => {
+  const citySelect = document.getElementById('citySelect');
+  Object.entries(cityRates).forEach(([city, rate]) => {
+    const option = document.createElement('option');
+    option.value = rate;
+    option.textContent = city;
+    citySelect.appendChild(option);
+  });
+
+  citySelect.addEventListener('change', (e) => {
+    document.getElementById('millRate').value = e.target.value;
+  });
+});
 
 function calculateAffordability() {
   const income = parseFloat(document.getElementById('income').value);
@@ -63,6 +93,6 @@ function resetCalculator() {
   const fields = ['income', 'debt', 'condoFees', 'heating', 'interestRate',
                   'resultPayment', 'resultPrice', 'resultDown', 'resultInsurance', 'resultTotalMortgage'];
   fields.forEach(id => document.getElementById(id).value = '');
+  document.getElementById('citySelect').value = "0.0061803";
   document.getElementById('millRate').value = 0.0061803;
-  document.getElementById('error').textContent = '';
 }
