@@ -83,8 +83,9 @@
     <label>Annual Charges (Total Deductions) ($) <span title="Total of all deductions including fees, insurance charges, and other costs.">🛈</span></label>
     <input type="number" id="charges" class="border p-2 w-full mb-4" placeholder="Enter total deductions">
 
-    <label>Fund Value at End of Year ($) <span title="The fund value at the end of the year as shown on the statement.">🛈</span></label>
-    <input type="number" id="endValue" class="border p-2 w-full mb-4" placeholder="Enter ending fund value">
+<!-- Update the endValue input to readonly -->
+<label>Fund Value at End of Year ($) <span title="The fund value at the end of the year as shown on the statement.">🛈</span></label>
+<input type="number" id="endValue" class="border p-2 w-full mb-4" readonly>
 
     <button onclick="calculateULRateOfReturn()" class="bg-blue-600 text-white px-6 py-3 mt-4 rounded-md font-bold hover:bg-blue-700 transition w-full">
       Calculate
