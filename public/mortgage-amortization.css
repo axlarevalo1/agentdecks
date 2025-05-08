@@ -114,24 +114,18 @@ body {
 }
 
 /* Collapsible Sections */
-.section-content, .section-subcontent {
+.section-content {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
 }
 
-.section-subcontent {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-}
-
-.section-subcontent.active {
-  max-height: 1000px; /* Adjust as needed */
+.section-content.active {
+  max-height: 2000px; /* Enough for most content */
+  transition: max-height 0.5s ease-in;
 }
 
 .collapsible-section {
-  border-left: 3px solid #2563eb;
-  padding-left: 1rem;
-  margin: 1rem 0;
+  border: 2px solid #2563eb;
+  border-radius: 8px;
 }
