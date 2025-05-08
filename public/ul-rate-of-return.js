@@ -1,4 +1,9 @@
 // public/ul-rate-of-return.js
+function toggleLearnMore() {
+    const learnMoreContent = document.getElementById("learnMoreContent");
+    learnMoreContent.classList.toggle("hidden");
+}
+
 function calculateULRateOfReturn() {
     const startValue = parseFloat(document.getElementById("startValue").value);
     const deposits = parseFloat(document.getElementById("deposits").value) || 0;
