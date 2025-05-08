@@ -13,13 +13,13 @@ function calculateULRateOfReturn() {
         return;
     }
 
-    // Add Bonus at the Start of the Year
-    let balance = startValue + bonus;
+    // Calculate monthly charges
     const monthlyCharge = annualCharges / 12;
     const totalDeposits = deposits * depositFrequency;
+    let balance = startValue;
     let totalCharges = 0;
 
-    // Monthly Calculation Loop
+    // Monthly charge deduction calculation
     for (let month = 1; month <= 12; month++) {
         // Apply monthly charges
         balance -= monthlyCharge;
@@ -31,11 +31,11 @@ function calculateULRateOfReturn() {
         }
     }
 
-    // Add interest at the end of the year
-    balance += interest;
+    // Add interest and bonus
+    balance += interest + bonus;
+    const adjustedStartValue = startValue + totalDeposits - totalCharges;
 
     // Calculations
-    const adjustedStartValue = startValue + bonus + totalDeposits - totalCharges;
     const totalReturn = ((endValue - adjustedStartValue + totalCharges) / adjustedStartValue) * 100;
     const returnExcludingBonus = ((interest + totalCharges) / adjustedStartValue) * 100;
     const bonusRate = (bonus / adjustedStartValue) * 100;
