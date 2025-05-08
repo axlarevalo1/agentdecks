@@ -12,10 +12,12 @@ body {
 }
 
 /* Smooth Transition for Learn More Section */
-#learnMoreContent {
-    transition: max-height 0.3s ease-in-out;
+.learn-more {
     overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
 }
+
 
 
 input {
