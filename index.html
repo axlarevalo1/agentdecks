@@ -6,6 +6,16 @@
     <meta name="description" content="AgentDecks - Tools for Your Client Presentations – Free Forever!">
     <title>AgentDecks - Tools for Your Client Presentations</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+});
+</script>
     <link rel="icon" href="public/presentationIcon.png" type="image/png">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0795527334455170"
      crossorigin="anonymous"></script>
