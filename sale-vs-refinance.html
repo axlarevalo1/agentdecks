@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sale vs Refinance Calculator - AgentDecks">
+  <title>Sale vs Refinance Calculator - AgentDecks</title>
+  <link rel="stylesheet" href="public/sale-vs-refinance.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0795527334455170"
+     crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-50 font-sans py-16 text-center">
+
+  <div class="max-w-2xl mx-auto bg-white p-6 rounded-md shadow-md">
+    <h1 class="text-3xl font-bold mb-4">Sale vs Refinance Calculator</h1>
+
+    <!-- Refinance Section -->
+    <h2 class="text-2xl font-bold mb-3 text-blue-600">Refinance Calculator</h2>
+    <label>Current Property Value ($)</label>
+    <input type="number" id="propertyValue" class="border p-2 w-full mb-3" placeholder="Enter current property value" oninput="calculateRefinance()">
+
+    <label>Loan to Value (LTV)</label>
+    <select id="ltv" class="border p-2 w-full mb-3" onchange="calculateRefinance()">
+        <option value="65">65% - Straight Equity Line of Credit</option>
+        <option value="75">75% - Self-Employed/B-Lender Refinance</option>
+        <option value="80" selected>80% - Typical Refinance</option>
+        <option value="85">85% - Some HELOCs</option>
+    </select>
+
+    <label>Maximum Loan Amount ($ - Auto Calculated)</label>
+    <input type="text" id="maxLoanAmount" class="border p-2 w-full mb-3 bg-gray-100 text-gray-600" readonly>
+
+    <label>Current Mortgage Balance ($)</label>
+    <input type="number" id="currentMortgage" class="border p-2 w-full mb-3">
+
+    <label>Mortgage Penalty (if known) ($)</label>
+    <input type="number" id="mortgagePenalty" class="border p-2 w-full mb-3">
+
+    <div class="mt-4 text-left">
+      <h3 class="font-bold text-lg text-blue-600">Refinance Results:</h3>
+      <p>Proceeds upon refinance: <span id="refinanceProceeds">$0.00</span></p>
+      <p>Monthly mortgage payment: <span id="monthlyPayment">$0.00</span></p>
+    </div>
+  </div>
+
+  <div class="max-w-2xl mx-auto bg-white p-6 mt-6 rounded-md shadow-md">
+    <!-- Sale Section -->
+    <h2 class="text-2xl font-bold mb-3 text-green-600">Sale Proceeds Calculator</h2>
+    <label>Projected Sale Price ($)</label>
+    <input type="number" id="salePrice" class="border p-2 w-full mb-3">
+
+    <label>Current Mortgage Balance ($)</label>
+    <input type="number" id="saleMortgage" class="border p-2 w-full mb-3">
+
+    <label>Mortgage Penalty (if known) ($)</label>
+    <input type="number" id="salePenalty" class="border p-2 w-full mb-3">
+
+    <label>Realty Fees ($)</label>
+    <input type="number" id="realtyFees" class="border p-2 w-full mb-3" placeholder="Enter expected realty fees">
+
+    <label>Legal Fees ($)</label>
+    <input type="number" id="legalFees" class="border p-2 w-full mb-3" placeholder="Enter expected legal fees">
+
+    <label>Adjustments ($ - Optional)</label>
+    <input type="number" id="adjustments" class="border p-2 w-full mb-3" placeholder="Enter any other expenses">
+
+    <div class="mt-4 text-left">
+      <h3 class="font-bold text-lg text-green-600">Sale Results:</h3>
+      <p>Net Proceeds: <span id="saleProceeds">$0.00</span></p>
+    </div>
+  </div>
+
+  <!-- Loan to Value Information Box -->
+  <div class="max-w-2xl mx-auto bg-blue-100 p-4 mt-6 rounded-md shadow-md text-sm text-left">
+    <h3 class="text-xl font-bold mb-2">Typical Loan to Value:</h3>
+    <ul>
+      <li><strong>65%:</strong> Straight Equity Line of Credit</li>
+      <li><strong>75%:</strong> Self-Employed/B-Lender Refinance</li>
+      <li><strong>80%:</strong> Typical Refinance</li>
+      <li><strong>85%:</strong> Some HELOCs</li>
+    </ul>
+    <p class="mt-2 text-xs text-gray-600">
+      *Mortgage Penalties are typically 3 months interest on Variable Mortgages, and IRD (Interest Rate Differential) 
+      or 3 months interest, whichever is higher, on Fixed Interest.
+    </p>
+  </div>
+
+  <!-- Disclaimer -->
+  <footer class="bg-gray-100 text-gray-600 text-center py-4 mt-8 text-sm">
+    <p>&copy; 2025 AgentDecks.com. All rights reserved.</p>
+    <p>This calculator is for informational purposes only and should not be considered financial advice. Please consult a financial professional before making any decisions.</p>
+  </footer>
+
+  <script src="public/sale-vs-refinance.js"></script>
+</body>
+</html>
