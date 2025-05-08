@@ -114,22 +114,18 @@ body {
 }
 
 /* Collapsible Sections */
-.section-content {
-  transition: all 0.3s ease;
-}
 .section-subcontent {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
 }
+
 .section-subcontent.active {
-  max-height: 2000px; /* Adjust based on content needs */
+  max-height: 1000px; /* Adjust as needed */
 }
+
 .collapsible-section {
   border-left: 3px solid #2563eb;
   padding-left: 1rem;
   margin: 1rem 0;
-}
-.calculate-button:hover {
-  background-color: #1d4ed8;
 }
