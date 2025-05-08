@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compound Interest Calculator - Calculate the future value of your investment with compound interest.">
+  <meta name="keywords" content="Compound Interest Calculator, Investment, Finance, AgentDecks">
+  <meta name="author" content="AgentDecks - Professional Client Presentations">
+  <title>Compound Interest Calculator - AgentDecks</title>
+  <link rel="stylesheet" href="public/compound-interest.css">
+</head>
+<body class="bg-gray-50 font-sans text-center py-16">
+  
+  <!-- Back to Home Button -->
+  <div style="margin-bottom: 15px;">
+    <a href="index.html" class="text-blue-600 hover:text-blue-800 font-semibold">&larr; Back to Home</a>
+  </div>
+
+  <h1 class="text-3xl font-bold mb-4">Compound Interest Calculator</h1>
+  <div class="max-w-xl mx-auto bg-white p-6 rounded-md shadow-md">
+    <label>Principal Amount ($)</label>
+    <input type="number" id="principal" class="border p-2 w-full mb-4" placeholder="Enter principal amount">
+
+    <label>Annual Interest Rate (%)</label>
+    <input type="number" id="rate" class="border p-2 w-full mb-4" placeholder="Enter interest rate">
+
+    <label>Compounding Periods Per Year</label>
+    <select id="compounds" class="border p-2 w-full mb-4">
+      <option value="1">Annually</option>
+      <option value="2">Semi-Annually</option>
+      <option value="4">Quarterly</option>
+      <option value="12">Monthly</option>
+      <option value="365">Daily</option>
+    </select>
+
+    <label>Number of Years</label>
+    <input type="number" id="years" class="border p-2 w-full mb-4" placeholder="Enter number of years">
+
+    <button onclick="calculateCompoundInterest()" class="bg-blue-600 text-white px-6 py-3 mt-4 rounded-md font-bold hover:bg-blue-700 transition">
+      Calculate
+    </button>
+    
+    <div id="result" class="mt-4 text-xl font-bold"></div>
+  </div>
+
+  <!-- Disclaimer -->
+  <footer class="bg-gray-100 text-gray-600 text-center py-4 mt-8 text-sm">
+    <p>&copy; 2025 AgentDecks.com. All rights reserved.</p>
+    <p>This calculator is for informational purposes only and should not be considered financial advice.</p>
+  </footer>
+
+  <script src="public/compound-interest.js"></script>
+</body>
+</html>
