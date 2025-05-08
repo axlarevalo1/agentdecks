@@ -146,22 +146,28 @@ window.addEventListener('resize', sendHeightToParent);
 
 function toggleSection(sectionId) {
   const sections = {
-    main: { header: document.querySelector('[onclick="toggleSection(\'main\')]'), content: document.getElementById('mainSection') },
-    pro: { content: document.getElementById('proSection'), icon: document.querySelector('[onclick="toggleSection(\'pro\')] span') },
-    client: { content: document.getElementById('clientSection'), icon: document.querySelector('[onclick="toggleSection(\'client\')] span') },
-    why: { content: document.getElementById('whySection'), icon: document.querySelector('[onclick="toggleSection(\'why\')] span') }
+    main: {
+      content: document.getElementById('mainSection'),
+      icon: document.querySelector('[onclick="toggleSection(\'main\')] span')
+    },
+    pro: {
+      content: document.getElementById('proSection'),
+      icon: document.querySelector('[onclick="toggleSection(\'pro\')] span')
+    },
+    client: {
+      content: document.getElementById('clientSection'),
+      icon: document.querySelector('[onclick="toggleSection(\'client\')] span')
+    },
+    why: {
+      content: document.getElementById('whySection'),
+      icon: document.querySelector('[onclick="toggleSection(\'why\')] span')
+    }
   };
 
-  if(sectionId === 'main') {
-    // Toggle main content
-    const isHidden = sections.main.content.style.maxHeight === '0px' || !sections.main.content.style.maxHeight;
-    sections.main.content.style.maxHeight = isHidden ? '5000px' : '0';
-    sections.main.header.querySelector('span').textContent = isHidden ? '▼' : '►';
-  } else {
-    // Toggle subsections
-    sections[sectionId].content.classList.toggle('active');
-    sections[sectionId].content.classList.toggle('hidden');
-    sections[sectionId].icon.textContent = 
-      sections[sectionId].icon.textContent === '►' ? '▼' : '►';
-  }
+  // Toggle the section
+  const section = sections[sectionId];
+  section.content.classList.toggle('active');
+  
+  // Update the arrow icon
+  section.icon.textContent = section.content.classList.contains('active') ? '▼' : '►';
 }
