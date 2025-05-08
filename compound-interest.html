@@ -9,7 +9,7 @@
   <title>Compound Interest Calculator - AgentDecks</title>
   <link rel="stylesheet" href="public/compound-interest.css">
 </head>
-<body class="bg-gray-50 font-sans text-center py-16">
+<body class="bg-gray-50 font-sans text-center py-8 flex flex-col items-center justify-center min-h-screen">
   
   <!-- Back to Home Button -->
   <div style="margin-bottom: 15px;">
@@ -17,7 +17,7 @@
   </div>
 
   <h1 class="text-3xl font-bold mb-4">Compound Interest Calculator</h1>
-  <div class="max-w-xl mx-auto bg-white p-6 rounded-md shadow-md text-left">
+  <div class="max-w-md w-full bg-white p-6 rounded-md shadow-md text-left mx-auto">
     <label>Principal Amount ($)</label>
     <input type="number" id="principal" class="border p-2 w-full mb-4" placeholder="Enter principal amount">
 
@@ -54,12 +54,12 @@
       Calculate
     </button>
     
-    <div id="result" class="mt-4 text-xl font-bold"></div>
-    <div id="amortizationTable" class="overflow-x-auto mt-8"></div>
+    <div id="result" class="mt-4 text-xl font-bold text-center"></div>
+    <div id="amortizationTable" class="overflow-x-auto mt-4"></div>
   </div>
 
-  <!-- Disclaimer -->
-  <footer class="bg-gray-100 text-gray-600 text-center py-4 mt-8 text-sm">
+  <!-- Disclaimer - Cleanly Centered -->
+  <footer class="bg-gray-100 text-gray-600 text-center py-4 mt-8 w-full max-w-md mx-auto">
     <p>&copy; 2025 AgentDecks.com. All rights reserved.</p>
     <p>This calculator is for informational purposes only and should not be considered financial advice.</p>
   </footer>
