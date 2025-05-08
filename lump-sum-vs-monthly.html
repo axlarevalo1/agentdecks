@@ -32,22 +32,22 @@
     <h3 class="text-2xl font-bold text-gray-700 mt-6">Monthly Investment</h3>
     <div class="space-y-4 mt-4 text-left">
         <label class="block text-gray-700 font-semibold">Monthly Investment Amount ($)</label>
-        <input type="number" id="monthlyInvestment" class="border rounded-md w-full p-2" placeholder="Enter monthly amount" required oninput="syncInvestment()">
+        <input type="number" id="monthlyInvestment" class="border rounded-md w-full p-2" placeholder="Enter monthly amount" oninput="syncInvestment()">
 
         <label class="block text-gray-700 font-semibold">Projected Rate of Return (%)</label>
-        <input type="number" id="rateOfReturn" class="border rounded-md w-full p-2" value="5" required oninput="syncInvestment()">
+        <input type="number" id="rateOfReturn" class="border rounded-md w-full p-2" value="5" oninput="syncInvestment()">
 
         <label class="block text-gray-700 font-semibold">Number of Years</label>
-        <input type="number" id="investmentYears" class="border rounded-md w-full p-2" value="10" required oninput="syncInvestment()">
+        <input type="number" id="investmentYears" class="border rounded-md w-full p-2" value="10" oninput="syncInvestment()">
     </div>
 
-    <!-- Lump Sum Investment Section -->
+    <!-- Lump-Sum Investment Section -->
     <h3 class="text-2xl font-bold text-gray-700 mt-8">Lump-Sum Investment</h3>
     <div class="space-y-4 mt-4 text-left">
         <label class="block text-gray-700 font-semibold">Monthly Loan Obligation (Synced)</label>
         <input type="number" id="monthlyLoan" class="border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly>
 
-        <label class="block text-gray-700 font-semibold">Total Investment Loan</label>
+        <label class="block text-gray-700 font-semibold">Total Investment Loan (Calculated)</label>
         <input type="number" id="investmentLoan" class="border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly>
 
         <label class="block text-gray-700 font-semibold">Investment Loan Term</label>
@@ -60,13 +60,8 @@
         </select>
 
         <label class="block text-gray-700 font-semibold">Investment Loan Interest Rate (%)</label>
-        <input type="number" id="loanInterestRate" class="border rounded-md w-full p-2" value="5" required oninput="syncInvestment()">
+        <input type="number" id="loanInterestRate" class="border rounded-md w-full p-2" value="5" oninput="syncInvestment()">
     </div>
-
-    <!-- Calculate Button -->
-    <button onclick="calculateInvestments()" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition mt-6 w-full">
-        Calculate
-    </button>
 
     <!-- Results Section -->
     <div class="mt-6 text-left">
@@ -87,14 +82,7 @@
     </div>
 </section>
 
-<!-- Disclaimer -->
-<p class="text-sm text-gray-600 mt-4 text-center max-w-3xl mx-auto">
-    Disclaimer: Some rates may be variable. Be aware of your risk tolerance. Investments may drop lower than the loan value, resulting in negative equity.
-    This tool is for informational purposes only. Consult your professional advisor.
-</p>
-
 <!-- JavaScript Link -->
 <script src="public/lump-sum-vs-monthly.js"></script>
 </body>
-
 </html>
