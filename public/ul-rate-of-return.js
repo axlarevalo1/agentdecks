@@ -1,4 +1,4 @@
-// public/ul-rate-of-return.js
+// Toggle Learn More Section
 function toggleLearnMore() {
     const learnMoreContent = document.getElementById("learnMoreContent");
     const learnMoreIcon = document.getElementById("learnMoreIcon");
@@ -16,36 +16,46 @@ function toggleLearnMore() {
     }
 }
 
+// Auto-update End Value as you type
+function updateEndValue() {
+    const startValue = parseFloat(document.getElementById("startValue").value) || 0;
+    const deposits = parseFloat(document.getElementById("deposits").value) || 0;
+    const depositFrequency = parseInt(document.getElementById("depositFrequency").value) || 12;
+    const interest = parseFloat(document.getElementById("interest").value) || 0;
+    const bonus = parseFloat(document.getElementById("bonus").value) || 0;
+    const charges = parseFloat(document.getElementById("charges").value) || 0;
 
+    const totalDeposits = deposits * depositFrequency;
+    const computedEndValue = startValue + totalDeposits + interest + bonus - charges;
+    
+    document.getElementById("endValue").value = computedEndValue.toFixed(2);
+}
 
+// Main Calculation Function
 function calculateULRateOfReturn() {
-  const startValue = parseFloat(document.getElementById("startValue").value);
-  const deposits = parseFloat(document.getElementById("deposits").value) || 0;
-  const depositFrequency = parseInt(document.getElementById("depositFrequency").value);
-  const interest = parseFloat(document.getElementById("interest").value);
-  const bonus = parseFloat(document.getElementById("bonus").value) || 0;
-  const charges = parseFloat(document.getElementById("charges").value);
+    const startValue = parseFloat(document.getElementById("startValue").value) || 0;
+    const deposits = parseFloat(document.getElementById("deposits").value) || 0;
+    const depositFrequency = parseInt(document.getElementById("depositFrequency").value) || 12;
+    const interest = parseFloat(document.getElementById("interest").value) || 0;
+    const bonus = parseFloat(document.getElementById("bonus").value) || 0;
+    const charges = parseFloat(document.getElementById("charges").value) || 0;
 
-  if (isNaN(startValue) || isNaN(deposits) || isNaN(interest) || isNaN(charges)) {
-    document.getElementById("result").innerText = "Please fill in all required fields correctly.";
-    return;
-  }
+    if (!startValue || !interest) {
+        document.getElementById("result").innerText = "Please fill Start Value and Interest fields.";
+        return;
+    }
 
-    // Calculate total deposits and end value
-  const totalDeposits = deposits * depositFrequency;
-  const adjustedStartValue = startValue + totalDeposits;
-
-    // Adjusted start value (initial + deposits)
+    const totalDeposits = deposits * depositFrequency;
     const adjustedStartValue = startValue + totalDeposits;
 
-  // Calculate rates (matches statement methodology)
-  const totalReturn = ((interest + bonus) / adjustedStartValue) * 100;
-  const returnExcludingBonus = (interest / adjustedStartValue) * 100;
-  const bonusRate = (bonus / adjustedStartValue) * 100;
+    // Final Calculations
+    const totalReturn = ((interest + bonus) / adjustedStartValue * 100).toFixed(2);
+    const returnExcludingBonus = (interest / adjustedStartValue * 100).toFixed(2);
+    const bonusRate = (bonus / adjustedStartValue * 100).toFixed(2);
 
-  document.getElementById("result").innerHTML = `
-    <p>Total Rate of Return: <strong>${totalReturn.toFixed(2)}%</strong></p>
-    <p>Rate of Return (Excluding Bonus): <strong>${returnExcludingBonus.toFixed(2)}%</strong></p>
-    <p>Bonus Interest Percentage: <strong>${bonusRate.toFixed(2)}%</strong></p>
-  `;
+    document.getElementById("result").innerHTML = `
+        <p>Total Rate of Return: <strong>${totalReturn}%</strong></p>
+        <p>Rate of Return (Excluding Bonus): <strong>${returnExcludingBonus}%</strong></p>
+        <p>Bonus Interest Percentage: <strong>${bonusRate}%</strong></p>
+    `;
 }
