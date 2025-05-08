@@ -10,23 +10,13 @@
      crossorigin="anonymous"></script>
   <title>Canada Mortgage Calculator - AgentDecks</title>
   <link rel="stylesheet" href="public/mortgage-amortization.css">
+  <!-- Tailwind CSS CDN for Styling -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .section-subcontent {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-    }
-    .section-subcontent.active { max-height: 1000px; }
-    .collapsible-section { 
-      border-left: 3px solid #2563eb;
-      padding-left: 1rem;
-      margin: 1rem 0;
-    }
-  </style>
 </head>
 <body class="bg-gray-50 font-sans py-16 text-center">
 
+<!-- Site Header with AgentDecks Branding -->    
+  <!-- Full-width Blue Header -->
   <header class="bg-blue-600 text-white w-full max-w-full py-4">
     <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
       <div class="text-xl font-bold">
@@ -39,19 +29,18 @@
       </nav>
     </div>
   </header>
-
   <main class="max-w-6xl mx-auto px-4 py-8">
+<!-- Back to Home Button -->
     <div class="prose max-w-2xl mx-auto my-8">
-  <div class="collapsible-section bg-white rounded-lg shadow-md p-6 mb-8 cursor-pointer" 
-       onclick="toggleSection('main')">
-    <h2 class="text-2xl font-bold text-blue-600 mb-4 flex items-center">
-      <span class="mr-2">▼</span> Why This Mortgage Calculator is Powerful
-    </h2>
-    
-    <div id="mainSection" class="section-content">
+      <h2 class="text-2xl font-bold text-blue-600 mb-4 cursor-pointer flex items-center" onclick="toggleSection('main')">
+        <span class="mr-2">▼</span> Why This Mortgage Calculator is a powerful tool for Realtors and Home Buyers
+      </h2>
+
+      <div id="mainSection" class="section-content">
+    <!-- Professional Advantage Section -->
         <div class="collapsible-section">
- <div class="collapsible-subsection">
-        <h3 class="text-xl font-semibold mb-3">🏆 Professional Advantage</h3> 🏆 Professional Advantage for Realtors
+          <h3 class="text-xl font-semibold mb-3 cursor-pointer flex items-center" onclick="toggleSection('pro')">
+            <span class="mr-2">►</span> 🏆 Professional Advantage for Realtors
           </h3>
           <div id="proSection" class="section-subcontent hidden pl-6">
             <p class="mb-4">This tool elevates your client consultations by providing:</p>
@@ -62,6 +51,8 @@
           </div>
         </div>
 
+
+    <!-- Client Value Section -->
         <div class="collapsible-section mt-4">
           <h3 class="text-xl font-semibold mb-3 cursor-pointer flex items-center" onclick="toggleSection('client')">
             <span class="mr-2">►</span> 📈 Client Value Proposition
@@ -80,7 +71,6 @@
             </div>
           </div>
         </div>
-
         <div class="collapsible-section mt-4">
           <h3 class="text-xl font-semibold mb-3 cursor-pointer flex items-center" onclick="toggleSection('why')">
             <span class="mr-2">►</span> 🔍 Why This Matters
@@ -100,108 +90,143 @@
           </div>
         </div>
       </div>
-
-      <p class="mt-4 text-sm text-gray-500">Click headers to expand/collapse sections</p>
-      <p class="mt-6 text-gray-600">This tool transforms complex mortgage math into clear, visual outcomes - helping you demonstrate value while saving hours of manual calculations.</p>
     </div>
 
-    <!-- Calculator Container -->
-    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-4xl mx-auto">
-      <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center border-b-2 border-blue-100 pb-4">
-        Canada Mortgage Calculator
-      </h1>
-      <p>This calculator uses standard Canadian mortgage calculations with interest compounded semi-annually (twice yearly), following regulations from the Office of the Superintendent of Financial Institutions (OSFI).</p>
-      <hr class="my-4">
+  <p class="mt-4 text-sm text-gray-500">Click headers to expand/collapse sections</p>
+</div>
+      
 
-      <div class="grid md:grid-cols-2 gap-8 mb-8">
-        <!-- Left Column -->
-        <div class="space-y-6">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Purchase Price ($)</label>
-            <input type="number" id="purchasePrice" 
-                  class="form-input focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="650,000"
-                  value="650000">
+  <p class="mt-6 text-gray-600">This tool transforms complex mortgage math into clear, visual outcomes - helping you demonstrate value while saving hours of manual calculations.</p>
+</div>
+    
+<!-- Calculator Container -->
+<div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-4xl mx-auto">
+  <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center border-b-2 border-blue-100 pb-4">
+    Canada Mortgage Calculator
+  </h1>
+
+  <!-- Input Section -->
+  <div class="grid md:grid-cols-2 gap-8 mb-8">
+    <!-- Left Column -->
+    <div class="space-y-6">
+      <!-- Purchase Price -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Purchase Price ($)</label>
+        <input type="number" id="purchasePrice" 
+              class="form-input focus:ring-blue-500 focus:border-blue-500"
+              placeholder="650,000"
+              value="650000">
+      </div>
+
+      <!-- Down Payment Percentage -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Down Payment (%)</label>
+        <select id="downPaymentPercent" 
+               class="form-input focus:ring-blue-500 focus:border-blue-500">
+          <option value="tiered" selected>5% on first $500k + 10% on remainder</option>
+          <option value="10">10%</option>
+          <option value="15">15%</option>
+          <option value="20">20%</option>
+          <option value="25">25%</option>
+          <option value="35">35%</option>
+        </select>
+      </div>
+
+      <!-- Interest Rate -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Interest Rate (%)</label>
+        <input type="number" id="interestRate" 
+              class="form-input focus:ring-blue-500 focus:border-blue-500"
+              step="0.01"
+              placeholder="4.5"
+              value="4.5">
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="space-y-6">
+      <!-- Down Payment Amount -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Down Payment Amount ($)</label>
+        <input type="text" id="downPaymentAmount" 
+              class="form-input bg-gray-50 font-semibold text-blue-600" 
+              readonly>
+      </div>
+
+      <!-- Mortgage Insurance -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Mortgage Insurance</label>
+        <input type="text" id="mortgageInsurance" 
+              class="form-input bg-gray-50 font-semibold text-blue-600" 
+              readonly>
+      </div>
+
+      <!-- Amortization Period -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Amortization Period</label>
+        <select id="amortization" 
+               class="form-input focus:ring-blue-500 focus:border-blue-500">
+          <option value="10">10 years</option>
+          <option value="15">15 years</option>
+          <option value="20">20 years</option>
+          <option value="25">25 years</option>
+          <option value="30" selected>30 years</option>
+        </select>
+      </div>
+
+      <!-- Start Date -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+        <input type="date" id="startDate" 
+              class="form-input focus:ring-blue-500 focus:border-blue-500">
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Summary -->
+  <div class="bg-blue-50 rounded-lg p-6 mb-8 shadow-sm">
+    <div class="grid grid-cols-2 gap-4 text-center">
+      <div>
+        <p class="text-sm text-gray-600 mb-1">Loan Amount</p>
+        <p class="text-2xl font-bold text-blue-600" id="loanAmount">$0.00</p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-600 mb-1">Monthly Payment</p>
+        <p class="text-2xl font-bold text-blue-600" id="monthlyPayment">$0.00</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Amortization Table Container -->
+  <div id="amortizationTable" class="overflow-x-auto rounded-lg border border-gray-200">
+    <!-- Table will be inserted here by JavaScript -->
+  </div>
+</div>
+
+<script>
+// Set default date to today
+document.getElementById('startDate').valueAsDate = new Date();
+</script>
+      <!-- Results Summary -->
+      <div class="bg-blue-50 p-4 rounded-lg mb-8">
+        <div class="flex justify-center gap-8">
+          <div class="text-center">
+            <p class="text-sm text-gray-600">Loan Amount</p>
+            <p class="text-xl font-bold text-blue-600" id="loanAmount">$0.00</p>
           </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Down Payment (%)</label>
-            <select id="downPaymentPercent" 
-                   class="form-input focus:ring-blue-500 focus:border-blue-500">
-              <option value="tiered" selected>5% on first $500k + 10% on remainder</option>
-              <option value="10">10%</option>
-              <option value="15">15%</option>
-              <option value="20">20%</option>
-              <option value="25">25%</option>
-              <option value="35">35%</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Interest Rate (%)</label>
-            <input type="number" id="interestRate" 
-                  class="form-input focus:ring-blue-500 focus:border-blue-500"
-                  step="0.01"
-                  placeholder="4.5"
-                  value="4.5">
-          </div>
-        </div>
-
-        <!-- Right Column -->
-        <div class="space-y-6">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Down Payment Amount ($)</label>
-            <input type="text" id="downPaymentAmount" 
-                  class="form-input bg-gray-50 font-semibold text-blue-600" 
-                  readonly>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Mortgage Insurance</label>
-            <input type="text" id="mortgageInsurance" 
-                  class="form-input bg-gray-50 font-semibold text-blue-600" 
-                  readonly>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Amortization Period</label>
-            <select id="amortization" 
-                   class="form-input focus:ring-blue-500 focus:border-blue-500">
-              <option value="10">10 years</option>
-              <option value="15">15 years</option>
-              <option value="20">20 years</option>
-              <option value="25">25 years</option>
-              <option value="30" selected>30 years</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
-            <input type="date" id="startDate" 
-                  class="form-input focus:ring-blue-500 focus:border-blue-500">
+          <div class="text-center">
+            <p class="text-sm text-gray-600">Monthly Payment</p>
+            <p class="text-xl font-bold text-blue-600" id="monthlyPayment">$0.00</p>
           </div>
         </div>
       </div>
 
-      <div class="bg-blue-50 rounded-lg p-6 mb-8 shadow-sm">
-        <div class="grid grid-cols-2 gap-4 text-center">
-          <div>
-            <p class="text-sm text-gray-600 mb-1">Loan Amount</p>
-            <p class="text-2xl font-bold text-blue-600" id="loanAmount">$0.00</p>
-          </div>
-          <div>
-            <p class="text-sm text-gray-600 mb-1">Monthly Payment</p>
-            <p class="text-2xl font-bold text-blue-600" id="monthlyPayment">$0.00</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="amortizationTable" class="overflow-x-auto rounded-lg border border-gray-200">
-        <!-- Table will be inserted here by JavaScript -->
-      </div>
+      <!-- Amortization Table -->
+      <div id="amortizationTable" class="overflow-x-auto"></div>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="bg-gray-100 text-gray-600 text-center py-6 mt-8 text-sm">
     <div class="max-w-6xl mx-auto px-4">
       <p>&copy; 2025 AgentDecks.com. All rights reserved.</p>
@@ -209,33 +234,6 @@
     </div>
   </footer>
 
-  <script>
-    // Set default date to today
-    document.getElementById('startDate').valueAsDate = new Date();
-
-    function toggleSection(sectionId) {
-      const sections = {
-        pro: {
-          content: document.getElementById('proSection'),
-          icon: document.querySelector('[onclick="toggleSection(\'pro\')] span')
-        },
-        client: {
-          content: document.getElementById('clientSection'),
-          icon: document.querySelector('[onclick="toggleSection(\'client\')] span')
-        },
-        why: {
-          content: document.getElementById('whySection'),
-          icon: document.querySelector('[onclick="toggleSection(\'why\')] span')
-        }
-      };
-
-      if (sections[sectionId]) {
-        const section = sections[sectionId];
-        section.content.classList.toggle('active');
-        section.icon.textContent = section.content.classList.contains('active') ? '▼' : '►';
-      }
-    }
-  </script>
-  <script src="public/mortgage-amortization.js"></script>
+<script src="public/mortgage-amortization.js"></script>
 </body>
 </html>
