@@ -44,8 +44,29 @@
     <label>Estimated Heating Costs (Yearly):</label>
     <input type="number" id="heating" value="2000" />
 
-    <label>Mill Rate (Auto-set for Calgary 2025):</label>
-    <input type="number" id="millRate" value="0.0061803" readonly />
+<label>Select City:</label>
+<div class="grid grid-cols-2 gap-4">
+  <select id="citySelect" class="form-select">
+    <option value="0.0061803" selected>Calgary, AB</option>
+    <option value="0.0063231">Edmonton, AB</option>
+    <option value="0.0066110">Toronto, ON</option>
+    <option value="0.0058320">Vancouver, BC</option>
+    <option value="0.0089450">Montreal, QC</option>
+    <option value="0.0102310">Ottawa, ON</option>
+    <option value="0.0078910">Winnipeg, MB</option>
+    <option value="0.0091230">Halifax, NS</option>
+    <option value="0.0074510">Quebec City, QC</option>
+    <option value="0.0081120">Hamilton, ON</option>
+    <option value="0.0078930">Saskatoon, SK</option>
+    <option value="0.0076420">Regina, SK</option>
+  </select>
+  
+  <div>
+    <label>Property Tax Mill Rate:</label>
+    <input type="number" id="millRate" class="bg-gray-100" readonly 
+           step="0.000001" value="0.0061803" />
+  </div>
+</div>
 
     <label>Down Payment Option:</label>
     <select id="downPayment">
