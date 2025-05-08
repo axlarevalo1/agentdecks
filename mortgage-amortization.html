@@ -236,5 +236,17 @@ document.getElementById('startDate').valueAsDate = new Date();
   </footer>
 
 <script src="public/mortgage-amortization.js"></script>
+  html
+<style>
+/* TEMPORARY FIX - MOVE TO CSS FILE LATER */
+.section-subcontent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.section-subcontent.active { max-height: 1000px; }
+.collapsible-section { border-left: 3px solid #2563eb; padding-left: 1rem; margin: 1rem 0; }
+</style>
 </body>
+  
 </html>
