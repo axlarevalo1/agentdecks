@@ -1,14 +1,21 @@
 // public/ul-rate-of-return.js
 function toggleLearnMore() {
     const learnMoreContent = document.getElementById("learnMoreContent");
+    const learnMoreIcon = document.getElementById("learnMoreIcon");
+
     if (learnMoreContent.classList.contains("hidden")) {
         learnMoreContent.classList.remove("hidden");
         learnMoreContent.style.maxHeight = learnMoreContent.scrollHeight + "px";
+        learnMoreIcon.innerText = "-";
     } else {
         learnMoreContent.style.maxHeight = "0";
-        setTimeout(() => learnMoreContent.classList.add("hidden"), 300);
+        setTimeout(() => {
+            learnMoreContent.classList.add("hidden");
+            learnMoreIcon.innerText = "+";
+        }, 300);
     }
 }
+
 
 
 function calculateULRateOfReturn() {
