@@ -146,6 +146,10 @@ window.addEventListener('resize', sendHeightToParent);
 
 function toggleSection(sectionId) {
   const sections = {
+    main: {
+      content: document.getElementById('mainSection'),
+      icon: document.querySelector('[onclick="toggleSection(\'main\')] span')
+    },
     pro: {
       content: document.getElementById('proSection'),
       icon: document.querySelector('[onclick="toggleSection(\'pro\')] span')
@@ -160,9 +164,22 @@ function toggleSection(sectionId) {
     }
   };
 
-  if (sections[sectionId]) {
-    const section = sections[sectionId];
-    section.content.classList.toggle('active');
-    section.icon.textContent = section.content.classList.contains('active') ? '▼' : '►';
-  }
+  const section = sections[sectionId];
+  if (!section) return;
+
+  const content = section.content;
+  const isActive = content.classList.toggle('active');
+  
+  // Update icon
+  section.icon.textContent = isActive ? '▼' : '►';
+  
+  // Set dynamic height
+  content.style.maxHeight = isActive ? `${content.scrollHeight}px` : '0';
 }
+
+// Initialize main section as expanded
+document.addEventListener('DOMContentLoaded', () => {
+  const mainSection = document.getElementById('mainSection');
+  mainSection.classList.add('active');
+  mainSection.style.maxHeight = `${mainSection.scrollHeight}px`;
+});
