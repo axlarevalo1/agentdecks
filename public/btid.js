@@ -48,14 +48,16 @@ function calculateBTID() {
     renderBTIDGraph(monthsArray, valuesArray);
 }
 
-// Function to Render the Graph
+// Function to Render the Graph - Fixed for Stability
 function renderBTIDGraph(months, values) {
     const ctx = document.getElementById("btidChart").getContext("2d");
 
+    // Properly clear the existing chart to avoid glitching
     if (btidChart) {
         btidChart.destroy();
     }
 
+    // Create a new chart cleanly
     btidChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -87,6 +89,13 @@ function renderBTIDGraph(months, values) {
                         text: 'Investment Value ($)'
                     },
                     beginAtZero: true
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (context) => `$${context.raw.toFixed(2)}`
+                    }
                 }
             }
         }
