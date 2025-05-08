@@ -145,24 +145,18 @@ window.addEventListener('load', sendHeightToParent);
 window.addEventListener('resize', sendHeightToParent);
 
 function toggleSection(sectionId) {
-  const sections = {
-    main: {
-      content: document.getElementById('mainSection'),
-      icon: document.querySelector('[onclick="toggleSection(\'main\')] span')
-    },
-    pro: {
-      content: document.getElementById('proSection'),
-      icon: document.querySelector('[onclick="toggleSection(\'pro\')] span')
-    },
-    client: {
-      content: document.getElementById('clientSection'),
-      icon: document.querySelector('[onclick="toggleSection(\'client\')] span')
-    },
-    why: {
-      content: document.getElementById('whySection'),
-      icon: document.querySelector('[onclick="toggleSection(\'why\')] span')
-    }
-  };
+  const section = document.getElementById(sectionId);
+  const isActive = section.classList.toggle('active');
+  
+  // Rotate arrow
+  const arrow = section.previousElementSibling.querySelector('span');
+  arrow.style.transform = isActive ? 'rotate(90deg)' : 'rotate(0deg)';
+}
+
+// Initialize main section as open
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('mainSection').classList.add('active');
+});
 
   const section = sections[sectionId];
   if (!section) return;
