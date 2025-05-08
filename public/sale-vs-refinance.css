@@ -1,0 +1,136 @@
+/* General Layout */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1, h2 {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    text-align: left;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+}
+
+input:focus, select:focus {
+    border-color: #4a90e2;
+}
+
+.max-w-2xl {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.text-blue-600 {
+    color: #1a73e8;
+}
+
+.text-green-600 {
+    color: #28a745;
+}
+
+.shadow-md {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Result Section */
+.text-left p {
+    margin: 0.5rem 0;
+}
+
+.text-left h3 {
+    margin-top: 1rem;
+    font-weight: 700;
+}
+
+/* LTV Information Box */
+.bg-blue-100 {
+    background-color: #e6f4ff;
+    border-left: 4px solid #1a73e8;
+    padding: 1rem;
+}
+
+.bg-gray-100 {
+    background-color: #f4f4f9;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 1rem;
+}
+
+ul li {
+    margin-bottom: 0.25rem;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #f4f4f9;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+    text-align: center;
+    color: #666;
+    border-top: 1px solid #ddd;
+}
+
+footer p {
+    margin: 0.2rem 0;
+}
+
+/* Button Styles (for future use if needed) */
+button {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: #0f5bb7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .max-w-2xl {
+        width: 90%;
+    }
+}
