@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Universal Life One-Year Rate of Return Calculator - AgentDecks">
+  <meta name="keywords" content="Universal Life, Rate of Return, Insurance, Finance, AgentDecks">
+  <title>Universal Life Rate of Return Calculator - AgentDecks</title>
+  <link rel="stylesheet" href="public/ul-rate-of-return.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 font-sans text-center py-16">
+  
+  <!-- Back to Home Button -->
+  <div style="margin-bottom: 15px;">
+    <a href="index.html" class="text-blue-600 hover:text-blue-800 font-semibold">&larr; Back to Home</a>
+  </div>
+
+  <h1 class="text-3xl font-bold mb-4">Universal Life Rate of Return Calculator</h1>
+  <div class="max-w-md w-full bg-white p-6 rounded-md shadow-md text-left mx-auto">
+    <label>Fund Value at Start of Year ($) <span title="The fund value as shown on the statement at the beginning of the year.">🛈</span></label>
+    <input type="number" id="startValue" class="border p-2 w-full mb-4" placeholder="Enter starting fund value">
+
+    <label>Interest/Investment Growth Credited ($) <span title="Total interest or investment growth credited to the fund during the year.">🛈</span></label>
+    <input type="number" id="interest" class="border p-2 w-full mb-4" placeholder="Enter interest/growth credited">
+
+    <label>Bonus Credited (if any) ($) <span title="Any bonus interest credited to the fund.">🛈</span></label>
+    <input type="number" id="bonus" class="border p-2 w-full mb-4" placeholder="Enter bonus credited (if any)">
+
+    <label>Annual Charges (Total Deductions) ($) <span title="Total of all deductions including fees, insurance charges, and other costs.">🛈</span></label>
+    <input type="number" id="charges" class="border p-2 w-full mb-4" placeholder="Enter total deductions">
+
+    <label>Fund Value at End of Year ($) <span title="The fund value at the end of the year as shown on the statement.">🛈</span></label>
+    <input type="number" id="endValue" class="border p-2 w-full mb-4" placeholder="Enter ending fund value">
+
+    <button onclick="calculateULRateOfReturn()" class="bg-blue-600 text-white px-6 py-3 mt-4 rounded-md font-bold hover:bg-blue-700 transition w-full">
+      Calculate
+    </button>
+    
+    <div id="result" class="mt-4 text-xl font-bold text-center"></div>
+  </div>
+
+  <!-- Disclaimer -->
+  <footer class="bg-gray-100 text-gray-600 text-center py-4 mt-8 text-sm">
+    <p>&copy; 2025 AgentDecks.com. All rights reserved.</p>
+    <p>This calculator is for informational purposes only and should not be considered financial advice.</p>
+  </footer>
+
+  <script src="public/ul-rate-of-return.js"></script>
+</body>
+</html>
