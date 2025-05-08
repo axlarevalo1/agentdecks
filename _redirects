@@ -1,0 +1,5 @@
+# Redirect www to non-www with HTTPS
+https://www.agentdecks.com/* https://agentdecks.com/:splat 301!
+
+# Force HTTPS on root domain
+http://agentdecks.com/* https://agentdecks.com/:splat 301!
