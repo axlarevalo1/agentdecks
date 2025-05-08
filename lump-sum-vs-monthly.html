@@ -50,6 +50,12 @@
         <label class="block text-gray-700 font-semibold">Total Investment Loan (Calculated)</label>
         <input type="number" id="investmentLoan" class="border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly>
 
+        <label class="block text-gray-700 font-semibold">Total Initial Investment (Auto-synced)</label>
+        <input type="number" id="initialInvestment" class="border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly>
+
+        <label class="block text-gray-700 font-semibold">Projected Rate of Return (Lump-Sum)</label>
+        <input type="number" id="lumpSumRate" class="border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly>
+
         <label class="block text-gray-700 font-semibold">Investment Loan Term</label>
         <select id="loanTerm" class="border rounded-md w-full p-2" onchange="syncInvestment()">
             <option value="0">Interest Only (Default)</option>
@@ -65,13 +71,11 @@
 
     <!-- Results Section -->
     <div class="mt-6 text-left space-y-4">
-        <!-- Separate Box for Monthly Investment Result -->
         <div class="bg-blue-50 p-4 rounded-md shadow-md border border-blue-200">
             <h3 class="font-bold text-lg text-blue-600">Final Monthly Investment Account Balance</h3>
             <p class="text-2xl font-bold text-blue-800" id="monthlyBalanceResult">$0.00</p>
         </div>
 
-        <!-- Separate Box for Lump-Sum Results -->
         <div class="bg-gray-50 p-4 rounded-md shadow-md mt-4 border border-gray-200">
             <h3 class="font-bold text-lg text-gray-700">Final Lump-Sum Investment Account Balance</h3>
             <p class="text-2xl font-bold text-green-600" id="lumpSumBalanceResult">$0.00</p>
@@ -88,5 +92,6 @@
 <!-- JavaScript Link -->
 <script src="public/lump-sum-vs-monthly.js"></script>
 </body>
+
 
 </html>
