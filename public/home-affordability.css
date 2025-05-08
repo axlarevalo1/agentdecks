@@ -1,4 +1,10 @@
+.form-select {
+  @apply w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
 
+.grid.grid-cols-2 {
+  @apply gap-4 mb-4;
+}
 .calculator-container {
   max-width: 700px;
   margin: 40px auto;
