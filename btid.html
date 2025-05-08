@@ -28,19 +28,19 @@
     </select>
 
     <label>Total Planned Monthly Budget ($)</label>
-    <input type="number" id="totalBudget" class="border p-2 w-full mb-4" placeholder="Enter total monthly budget">
+    <input type="number" id="totalBudget" class="border p-2 w-full mb-4" placeholder="Enter total monthly budget" oninput="calculateInvestDifference()">
 
     <label>Monthly Term Insurance Premium ($)</label>
-    <input type="number" id="termPremium" class="border p-2 w-full mb-4" placeholder="Enter monthly insurance premium">
+    <input type="number" id="termPremium" class="border p-2 w-full mb-4" placeholder="Enter monthly insurance premium" oninput="calculateInvestDifference()">
 
     <label>Invest the Difference (Monthly) ($) <span title="Calculated automatically">🛈</span></label>
-    <input type="number" id="investDifference" class="border p-2 w-full mb-4 bg-gray-100" placeholder="Calculated automatically" readonly>
+    <input type="number" id="investDifference" class="border p-2 w-full mb-4 bg-gray-100 text-gray-600" placeholder="Calculated automatically" readonly>
 
     <label>Projected Annual Rate of Return (%)</label>
     <input type="number" id="annualReturn" class="border p-2 w-full mb-4" placeholder="Enter annual rate of return">
 
     <button onclick="calculateBTID()" class="bg-blue-600 text-white px-6 py-3 mt-4 rounded-md font-bold hover:bg-blue-700 transition w-full">
-      Calculate
+      Calculate Investment at the End of the Term
     </button>
     
     <div id="result" class="mt-4 text-xl font-bold text-center"></div>
@@ -55,4 +55,3 @@
 
   <script src="public/BTID.js"></script>
 </body>
-</html>
