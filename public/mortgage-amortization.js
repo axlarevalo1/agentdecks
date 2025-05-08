@@ -99,7 +99,8 @@ function generateAmortizationTable(principal, rate, periods, startDate) {
 
 function calculateMortgage() {
   const purchasePrice = parseFloat(document.getElementById('purchasePrice').value);
-  const interestRate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+  const annualRate = parseFloat(document.getElementById('interestRate').value) / 100;
+  const interestRate = Math.pow(1 + annualRate/2, 1/6) - 1;
   const amortizationYears = parseInt(document.getElementById('amortization').value);
   const payments = amortizationYears * 12;
 
