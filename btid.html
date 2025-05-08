@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Buy Term, Invest the Difference Calculator - AgentDecks">
+  <meta name="keywords" content="Buy Term Invest Difference, Term Insurance, Investment Calculator, AgentDecks">
+  <title>Buy Term, Invest the Difference Calculator - AgentDecks</title>
+  <link rel="stylesheet" href="public/BTID.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 font-sans text-center py-16">
+  
+  <!-- Back to Home Button -->
+  <div style="margin-bottom: 15px;">
+    <a href="index.html" class="text-blue-600 hover:text-blue-800 font-semibold">&larr; Back to Home</a>
+  </div>
+
+  <h1 class="text-3xl font-bold mb-4">Buy Term, Invest the Difference Calculator</h1>
+  <div class="max-w-md w-full bg-white p-6 rounded-md shadow-md text-left mx-auto">
+    <label>Term Insurance Duration (Years)</label>
+    <select id="termDuration" class="border p-2 w-full mb-4">
+      <option value="10">10 Years</option>
+      <option value="20">20 Years</option>
+      <option value="25">25 Years</option>
+      <option value="30">30 Years</option>
+      <option value="35">35 Years</option>
+    </select>
+
+    <label>Total Planned Monthly Budget ($)</label>
+    <input type="number" id="totalBudget" class="border p-2 w-full mb-4" placeholder="Enter total monthly budget">
+
+    <label>Monthly Term Insurance Premium ($)</label>
+    <input type="number" id="termPremium" class="border p-2 w-full mb-4" placeholder="Enter monthly insurance premium">
+
+    <label>Invest the Difference (Monthly) ($) <span title="Calculated automatically">🛈</span></label>
+    <input type="number" id="investDifference" class="border p-2 w-full mb-4 bg-gray-100" placeholder="Calculated automatically" readonly>
+
+    <label>Projected Annual Rate of Return (%)</label>
+    <input type="number" id="annualReturn" class="border p-2 w-full mb-4" placeholder="Enter annual rate of return">
+
+    <button onclick="calculateBTID()" class="bg-blue-600 text-white px-6 py-3 mt-4 rounded-md font-bold hover:bg-blue-700 transition w-full">
+      Calculate
+    </button>
+    
+    <div id="result" class="mt-4 text-xl font-bold text-center"></div>
+    <canvas id="btidChart" class="mt-6" width="400" height="300"></canvas>
+  </div>
+
+  <!-- Disclaimer -->
+  <footer class="bg-gray-100 text-gray-600 text-center py-4 mt-8 text-sm">
+    <p>&copy; 2025 AgentDecks.com. All rights reserved.</p>
+    <p>This calculator is for informational purposes only and should not be considered financial advice. Term insurance premiums may be prohibitive on renewal. Please read your policy carefully. The final investment amount will vary based on actual deposits, rates, and term insurance renewals. There are no guarantees.</p>
+  </footer>
+
+  <script src="public/BTID.js"></script>
+</body>
+</html>
