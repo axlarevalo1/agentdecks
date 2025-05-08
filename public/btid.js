@@ -1,20 +1,28 @@
 // public/BTID.js
 let btidChart;
 
-function calculateBTID() {
-    const termDuration = parseInt(document.getElementById("termDuration").value);
+// Automatically calculate "Invest the Difference" as the user types
+function calculateInvestDifference() {
     const totalBudget = parseFloat(document.getElementById("totalBudget").value);
     const termPremium = parseFloat(document.getElementById("termPremium").value);
+
+    if (!isNaN(totalBudget) && !isNaN(termPremium)) {
+        const investDifference = totalBudget - termPremium;
+        document.getElementById("investDifference").value = investDifference >= 0 ? investDifference.toFixed(2) : "0.00";
+    } else {
+        document.getElementById("investDifference").value = "0.00";
+    }
+}
+
+function calculateBTID() {
+    const termDuration = parseInt(document.getElementById("termDuration").value);
+    const investDifference = parseFloat(document.getElementById("investDifference").value);
     const annualReturn = parseFloat(document.getElementById("annualReturn").value) / 100;
 
-    if (isNaN(totalBudget) || isNaN(termPremium) || isNaN(annualReturn)) {
+    if (isNaN(investDifference) || isNaN(annualReturn)) {
         document.getElementById("result").innerText = "Please fill in all fields correctly.";
         return;
     }
-
-    // Calculate Invest the Difference
-    const investDifference = totalBudget - termPremium;
-    document.getElementById("investDifference").value = investDifference.toFixed(2);
 
     // Calculate Projected Investment Value
     const monthlyRate = annualReturn / 12;
