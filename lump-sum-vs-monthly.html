@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lump-Sum vs. Monthly Investment Calculator - AgentDecks</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="public/lump-sum-vs-monthly.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0795527334455170"
+     crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-50 font-sans">
 
@@ -35,36 +39,6 @@
 
         <label class="block text-gray-700 font-semibold">Number of Years</label>
         <input type="number" id="investmentYears" class="border rounded-md w-full p-2" value="10" required>
-
-        <h4 class="font-semibold mt-4 text-gray-700">Total Investment Account Balance:</h4>
-        <p class="text-xl font-bold text-blue-600" id="monthlyInvestmentBalance">$0.00</p>
-    </div>
-
-    <!-- Lump Sum Investment Section -->
-    <h3 class="text-2xl font-bold text-gray-700 mt-8">Lump Sum Investment</h3>
-    <div class="space-y-4 mt-4 text-left">
-        <label class="block text-gray-700 font-semibold">Total Investment Loan (Auto-calculated)</label>
-        <input type="number" id="investmentLoan" class="border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly>
-
-        <label class="block text-gray-700 font-semibold">Monthly Loan Obligation (Synced)</label>
-        <input type="number" id="monthlyLoan" class="border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly>
-
-        <label class="block text-gray-700 font-semibold">Investment Loan Term</label>
-        <select id="loanTerm" class="border rounded-md w-full p-2">
-            <option value="0">Interest Only (Default)</option>
-            <option value="3">3 Years</option>
-            <option value="5">5 Years</option>
-            <option value="7">7 Years</option>
-            <option value="10">10 Years</option>
-        </select>
-
-        <label class="block text-gray-700 font-semibold">Investment Loan Interest Rate (%)</label>
-        <input type="number" id="loanInterestRate" class="border rounded-md w-full p-2" value="5">
-
-        <h4 class="font-semibold mt-4 text-gray-700">Results:</h4>
-        <p>Total Investment Balance: <span class="text-xl font-bold text-blue-600" id="lumpSumBalance">$0.00</span></p>
-        <p>Total Loan Balance: <span class="text-xl font-bold text-blue-600" id="loanBalance">$0.00</span></p>
-        <p>Total Net Equity: <span class="text-xl font-bold text-blue-600" id="netEquity">$0.00</span></p>
     </div>
 
     <!-- Calculate Button -->
@@ -72,47 +46,24 @@
         Calculate
     </button>
 
+    <!-- Chart Container -->
+    <div class="chart-container mt-6">
+        <canvas id="investmentChart"></canvas>
+    </div>
+
+    <!-- Chart Labels -->
+    <div class="mt-4">
+        <p class="text-sm text-gray-700"><span class="text-blue-600 font-bold">Blue Bar:</span> Monthly Investment | <span class="text-green-600 font-bold">Green Bar:</span> Lump-Sum Investment</p>
+    </div>
+
     <!-- Disclaimer -->
     <p class="text-sm text-gray-600 mt-4">
-        Disclaimer: Some rates may be variable. Be aware of your risk tolerance. Investments may drop lower than the loan value, resulting in negative equity. This tool is for informational purposes only. Consult your professional advisor.
+        Disclaimer: Some rates may be variable. Be aware of your risk tolerance. Investments may drop lower than the loan value, resulting in negative equity.
+        This tool is for informational purposes only. Consult your professional advisor.
     </p>
 </section>
 
-<!-- JavaScript for Calculation -->
-<script>
-function calculateInvestments() {
-    const monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value) || 0;
-    const rateOfReturn = parseFloat(document.getElementById("rateOfReturn").value) / 100;
-    const years = parseFloat(document.getElementById("investmentYears").value) || 0;
-
-    // Monthly Investment Calculation
-    let monthlyBalance = 0;
-    for (let i = 0; i < years * 12; i++) {
-        monthlyBalance = (monthlyBalance + monthlyInvestment) * (1 + rateOfReturn / 12);
-    }
-    document.getElementById("monthlyInvestmentBalance").innerText = `$${monthlyBalance.toFixed(2)}`;
-
-    // Lump Sum Investment Calculation
-    const loanInterestRate = parseFloat(document.getElementById("loanInterestRate").value) / 100;
-    const monthlyLoan = monthlyInvestment;
-    const lumpSumInvestment = monthlyLoan * 12 * years;
-    let lumpSumBalance = lumpSumInvestment * Math.pow(1 + rateOfReturn, years);
-    let loanBalance = lumpSumInvestment; // Interest only loan (default)
-
-    if (document.getElementById("loanTerm").value !== "0") {
-        loanBalance = lumpSumInvestment * Math.pow(1 + loanInterestRate, years);
-    }
-
-    const netEquity = lumpSumBalance - loanBalance;
-    
-    // Display Results
-    document.getElementById("investmentLoan").value = lumpSumInvestment.toFixed(2);
-    document.getElementById("monthlyLoan").value = monthlyLoan.toFixed(2);
-    document.getElementById("lumpSumBalance").innerText = `$${lumpSumBalance.toFixed(2)}`;
-    document.getElementById("loanBalance").innerText = `$${loanBalance.toFixed(2)}`;
-    document.getElementById("netEquity").innerText = `$${netEquity.toFixed(2)}`;
-}
-</script>
-
+<!-- JavaScript for Calculation and Chart -->
+<script src="public/lump-sum-vs-monthly.js"></script>
 </body>
 </html>
