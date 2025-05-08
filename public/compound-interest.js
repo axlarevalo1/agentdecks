@@ -35,25 +35,29 @@ function calculateCompoundInterest() {
     renderChart(yearsArray, valuesArray);
 }
 
-// Function to Render the Chart
+// Function to Render the Chart - Prevents Re-Creation Issues
 function renderChart(years, values) {
     const ctx = document.getElementById("compoundInterestChart").getContext("2d");
 
+    // Destroy existing chart if it exists
     if (compoundInterestChart) {
         compoundInterestChart.destroy();
     }
 
+    // Create a new chart
     compoundInterestChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: years,
             datasets: [{
-                label: 'Investment Growth',
+                label: 'Investment Growth Over Time',
                 data: values,
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 2,
-                pointRadius: 3
+                pointRadius: 3,
+                tension: 0.3, // Smooth line
+                fill: true
             }]
         },
         options: {
@@ -72,6 +76,13 @@ function renderChart(years, values) {
                         text: 'Future Value ($)'
                     },
                     beginAtZero: true
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (context) => `$${context.raw.toFixed(2)}`
+                    }
                 }
             }
         }
