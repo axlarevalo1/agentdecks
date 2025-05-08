@@ -111,12 +111,13 @@ document.getElementById("ltv").addEventListener("change", updateTermOptions);
 document.getElementById("mortgageTerm").addEventListener("change", calculateRefinance);
 document.getElementById("interestRate").addEventListener("input", calculateRefinance);
 
+// Syncing Mortgage Balances and Penalties
 document.getElementById("currentMortgage").addEventListener("input", syncMortgageDetails);
 document.getElementById("saleMortgage").addEventListener("input", syncMortgageDetails);
-
 document.getElementById("mortgagePenalty").addEventListener("input", syncMortgageDetails);
 document.getElementById("salePenalty").addEventListener("input", syncMortgageDetails);
 
+// Listeners for Sale Calculator
 document.getElementById("realtyFees").addEventListener("input", calculateSaleProceeds);
 document.getElementById("legalFees").addEventListener("input", calculateSaleProceeds);
 document.getElementById("adjustments").addEventListener("input", calculateSaleProceeds);
