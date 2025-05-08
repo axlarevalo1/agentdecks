@@ -42,13 +42,14 @@ function calculateInvestments() {
     }
 
     // Calculate Lump-Sum Investment Compound Growth
-    const lumpSumBalance = initialInvestment * Math.pow(1 + rateOfReturn, years);
+    let lumpSumBalance = initialInvestment * Math.pow(1 + rateOfReturn, years);
 
     // Calculate Loan Balance (Interest-Only or Amortized)
     const loanPrincipal = initialInvestment;
     const loanInterestRate = parseFloat(document.getElementById("loanInterestRate").value) / 100;
     const loanTerm = parseInt(document.getElementById("loanTerm").value);
     let loanBalance = loanPrincipal;
+    let reinvestedAmount = 0;
 
     if (loanTerm === 0) {
         // Interest-Only: Loan Balance remains the same
@@ -60,10 +61,18 @@ function calculateInvestments() {
         const monthlyLoanPayment = (loanPrincipal * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -totalPayments));
         loanBalance = loanPrincipal;
 
-        for (let i = 0; i < years * 12; i++) {
+        for (let i = 0; i < Math.min(totalPayments, years * 12); i++) {
             loanBalance = (loanBalance * (1 + monthlyRate)) - monthlyLoanPayment;
         }
         loanBalance = Math.max(0, loanBalance);
+
+        // If the loan is paid off before the end of the investment period
+        if (totalPayments < years * 12) {
+            const remainingMonths = (years * 12) - totalPayments;
+            for (let i = 0; i < remainingMonths; i++) {
+                lumpSumBalance = (lumpSumBalance + monthlyInvestment) * (1 + rateOfReturn / 12);
+            }
+        }
     }
 
     // Calculate Net Equity
