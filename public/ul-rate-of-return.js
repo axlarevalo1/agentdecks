@@ -1,8 +1,15 @@
 // public/ul-rate-of-return.js
 function toggleLearnMore() {
     const learnMoreContent = document.getElementById("learnMoreContent");
-    learnMoreContent.classList.toggle("hidden");
+    if (learnMoreContent.classList.contains("hidden")) {
+        learnMoreContent.classList.remove("hidden");
+        learnMoreContent.style.maxHeight = learnMoreContent.scrollHeight + "px";
+    } else {
+        learnMoreContent.style.maxHeight = "0";
+        setTimeout(() => learnMoreContent.classList.add("hidden"), 300);
+    }
 }
+
 
 function calculateULRateOfReturn() {
     const startValue = parseFloat(document.getElementById("startValue").value);
