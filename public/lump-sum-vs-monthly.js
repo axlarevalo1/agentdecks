@@ -7,8 +7,10 @@ function syncInvestment() {
     document.getElementById("monthlyLoan").value = monthlyInvestment;
 
     if (term === 0) {
+        // Interest Only Loan - Principal is total monthly payments
         document.getElementById("investmentLoan").value = (monthlyInvestment * 12 * years).toFixed(2);
     } else {
+        // Amortized Loan Calculation (Principal derived from monthly payments)
         const monthlyRate = rate / 12;
         const totalPayments = term * 12;
         const loanPrincipal = (monthlyInvestment * (1 - Math.pow(1 + monthlyRate, -totalPayments))) / monthlyRate;
@@ -24,15 +26,16 @@ function calculateInvestments() {
     const years = parseFloat(document.getElementById("investmentYears").value) || 0;
     const loanPrincipal = parseFloat(document.getElementById("investmentLoan").value) || 0;
 
-    // Monthly Investment Calculation
+    // Monthly Investment Calculation with Compound Interest
     let monthlyBalance = 0;
     for (let i = 0; i < years * 12; i++) {
         monthlyBalance = (monthlyBalance + monthlyInvestment) * (1 + rateOfReturn / 12);
     }
 
-    // Lump-Sum Investment Calculation
-    let lumpSumBalance = loanPrincipal * Math.pow(1 + rateOfReturn, years);
-    const loanBalance = loanPrincipal;
+    // Lump-Sum Investment Calculation (Principal Invested at Rate of Return)
+    const lumpSumBalance = loanPrincipal * Math.pow(1 + rateOfReturn, years);
+    const loanBalance = loanPrincipal; // Interest Only - Principal remains the same
+
     const netEquity = lumpSumBalance - loanBalance;
 
     // Display Results with Commas
