@@ -61,13 +61,13 @@
   
   <div class="max-w-md w-full bg-white p-6 rounded-md shadow-md text-left mx-auto">
     <label>Fund Value at Start of Year ($) <span title="The fund value as shown on the statement at the beginning of the year.">🛈</span></label>
-    <input type="number" id="startValue" class="border p-2 w-full mb-4" placeholder="Enter starting fund value">
-
+    <input type="number" id="startValue" class="border p-2 w-full mb-4" placeholder="Enter starting fund value" oninput="updateEndValue()">
+    
     <label>Periodic Deposits ($) <span title="Regular deposits made during the year (e.g., monthly, quarterly).">🛈</span></label>
-    <input type="number" id="deposits" class="border p-2 w-full mb-4" placeholder="Enter periodic deposit amount">
+    <input type="number" id="deposits" class="border p-2 w-full mb-4" placeholder="Enter periodic deposit amount" oninput="updateEndValue()">
 
     <label>Deposit Frequency</label>
-    <select id="depositFrequency" class="border p-2 w-full mb-4">
+    <select id="depositFrequency" class="border p-2 w-full mb-4" oninput="updateEndValue()">
       <option value="12">Monthly</option>
       <option value="4">Quarterly</option>
       <option value="2">Semi-Annually</option>
@@ -75,17 +75,17 @@
     </select>
 
     <label>Interest/Investment Growth Credited ($) <span title="Total interest or investment growth credited to the fund during the year.">🛈</span></label>
-    <input type="number" id="interest" class="border p-2 w-full mb-4" placeholder="Enter interest/growth credited">
+    <input type="number" id="interest" class="border p-2 w-full mb-4" placeholder="Enter interest/growth credited" oninput="updateEndValue()">
 
     <label>Bonus Credited (if any) ($) <span title="Any bonus interest credited to the fund.">🛈</span></label>
-    <input type="number" id="bonus" class="border p-2 w-full mb-4" placeholder="Enter bonus credited (if any)">
+    <input type="number" id="bonus" class="border p-2 w-full mb-4" placeholder="Enter bonus credited (if any)" oninput="updateEndValue()">
 
     <label>Annual Charges (Total Deductions) ($) <span title="Total of all deductions including fees, insurance charges, and other costs.">🛈</span></label>
-    <input type="number" id="charges" class="border p-2 w-full mb-4" placeholder="Enter total deductions">
+    <input type="number" id="charges" class="border p-2 w-full mb-4" placeholder="Enter total deductions" oninput="updateEndValue()">
 
-<!-- Update the endValue input to readonly -->
-<label>Fund Value at End of Year ($) <span title="The fund value at the end of the year as shown on the statement.">🛈</span></label>
-<input type="number" id="endValue" class="border p-2 w-full mb-4" readonly>
+  <!-- Update the endValue input to readonly -->
+  <label>Fund Value at End of Year ($) <span title="The fund value at the end of the year as shown on the statement.">🛈</span></label>
+  <input type="number" id="endValue" class="border p-2 w-full mb-4 font-bold bg-gray-100" readonly>
 
     <button onclick="calculateULRateOfReturn()" class="bg-blue-600 text-white px-6 py-3 mt-4 rounded-md font-bold hover:bg-blue-700 transition w-full">
       Calculate
