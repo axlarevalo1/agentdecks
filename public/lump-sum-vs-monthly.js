@@ -2,9 +2,22 @@
 function syncInvestment() {
     const monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value) || 0;
     const years = parseFloat(document.getElementById("investmentYears").value) || 0;
+    const loanInterestRate = parseFloat(document.getElementById("loanInterestRate").value) / 100;
+    const loanTerm = parseInt(document.getElementById("loanTerm").value);
 
     document.getElementById("monthlyLoan").value = monthlyInvestment;
-    document.getElementById("investmentLoan").value = (monthlyInvestment * 12 * years).toFixed(2);
+
+    if (loanTerm === 0) {
+        // Interest Only Loan Calculation
+        document.getElementById("investmentLoan").value = (monthlyInvestment * 12 * years).toFixed(2);
+    } else {
+        // Amortized Loan Calculation
+        const monthlyRate = loanInterestRate / 12;
+        const totalPayments = loanTerm * 12;
+        const loanPrincipal = (monthlyInvestment * (1 - Math.pow(1 + monthlyRate, -totalPayments))) / monthlyRate;
+        document.getElementById("investmentLoan").value = loanPrincipal.toFixed(2);
+    }
+
     calculateInvestments();
 }
 
@@ -15,6 +28,7 @@ function calculateInvestments() {
     const years = parseFloat(document.getElementById("investmentYears").value) || 0;
     const loanInterestRate = parseFloat(document.getElementById("loanInterestRate").value) / 100;
     const loanTerm = parseInt(document.getElementById("loanTerm").value);
+    const loanPrincipal = parseFloat(document.getElementById("investmentLoan").value) || 0;
 
     // Monthly Investment Calculation
     let monthlyBalance = 0;
@@ -23,18 +37,17 @@ function calculateInvestments() {
     }
 
     // Lump Sum Investment Calculation
-    const lumpSumInvestment = monthlyInvestment * 12 * years;
-    let lumpSumBalance = lumpSumInvestment * Math.pow(1 + rateOfReturn, years);
-    let loanBalance = lumpSumInvestment; // Default interest-only
+    let lumpSumBalance = loanPrincipal * Math.pow(1 + rateOfReturn, years);
+    let loanBalance = loanPrincipal; // Default interest-only
 
     if (loanTerm === 0) {
         // Interest Only Calculation
-        loanBalance = lumpSumInvestment;
+        loanBalance = loanPrincipal;
     } else {
         // Amortizing Loan Calculation
         const monthlyRate = loanInterestRate / 12;
         const totalPayments = loanTerm * 12;
-        const monthlyLoanPayment = (lumpSumInvestment * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -totalPayments));
+        const monthlyLoanPayment = (loanPrincipal * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -totalPayments));
         loanBalance = 0;
 
         for (let i = 0; i < years * 12; i++) {
@@ -53,5 +66,7 @@ function calculateInvestments() {
 }
 
 // Auto-calculate whenever interest rate or loan term is changed
-document.getElementById("loanTerm").addEventListener("change", calculateInvestments);
-document.getElementById("loanInterestRate").addEventListener("input", calculateInvestments);
+document.getElementById("loanTerm").addEventListener("change", syncInvestment);
+document.getElementById("loanInterestRate").addEventListener("input", syncInvestment);
+document.getElementById("monthlyInvestment").addEventListener("input", syncInvestment);
+document.getElementById("investmentYears").addEventListener("input", syncInvestment);
