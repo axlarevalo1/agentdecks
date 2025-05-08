@@ -69,3 +69,8 @@ function calculateInvestments() {
 function formatCurrency(value) {
     return `$${value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 }
+
+// Auto-calculate whenever interest rate or loan term is changed
+document.getElementById("loanTerm").addEventListener("change", syncInvestment);
+document.getElementById("loanInterestRate").addEventListener("input", syncInvestment);
+document.getElementById("monthlyInvestment").addEventListener("input", syncInvestment);
