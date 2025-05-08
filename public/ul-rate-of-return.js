@@ -18,7 +18,6 @@ function toggleLearnMore() {
 
 
 
-// Updated JavaScript (public/ul-rate-of-return.js)
 function calculateULRateOfReturn() {
     const startValue = parseFloat(document.getElementById("startValue").value);
     const deposits = parseFloat(document.getElementById("deposits").value) || 0;
@@ -40,9 +39,9 @@ function calculateULRateOfReturn() {
     // Adjusted start value (initial + deposits)
     const adjustedStartValue = startValue + totalDeposits;
 
-    // Calculate rates
-    const totalReturn = ((computedEndValue - adjustedStartValue) / adjustedStartValue) * 100;
-    const returnExcludingBonus = ((interest - charges) / adjustedStartValue) * 100;
+    // Calculate rates (MATCHING THE STATEMENT'S FORMULA)
+    const totalReturn = ((interest + bonus) / adjustedStartValue) * 100; // Exclude charges
+    const returnExcludingBonus = (interest / adjustedStartValue) * 100; // Exclude charges
     const bonusRate = (bonus / adjustedStartValue) * 100;
 
     // Display results
