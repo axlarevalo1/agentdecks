@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/home-affordability", "destination": "/home-affordability.html" },
+    { "source": "/mortgage-amortization", "destination": "/mortgage-amortization.html" }
+  ]
+}
