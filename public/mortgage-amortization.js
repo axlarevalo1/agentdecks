@@ -146,10 +146,6 @@ window.addEventListener('resize', sendHeightToParent);
 
 function toggleSection(sectionId) {
   const sections = {
-    main: {
-      content: document.getElementById('mainSection'),
-      icon: document.querySelector('[onclick="toggleSection(\'main\')] span')
-    },
     pro: {
       content: document.getElementById('proSection'),
       icon: document.querySelector('[onclick="toggleSection(\'pro\')] span')
@@ -164,10 +160,9 @@ function toggleSection(sectionId) {
     }
   };
 
-  // Toggle the section
-  const section = sections[sectionId];
-  section.content.classList.toggle('active');
-  
-  // Update the arrow icon
-  section.icon.textContent = section.content.classList.contains('active') ? '▼' : '►';
+  if (sections[sectionId]) {
+    const section = sections[sectionId];
+    section.content.classList.toggle('active');
+    section.icon.textContent = section.content.classList.contains('active') ? '▼' : '►';
+  }
 }
