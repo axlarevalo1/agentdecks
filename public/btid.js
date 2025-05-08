@@ -2,6 +2,9 @@
 let btidChart;
 
 // Automatically calculate "Invest the Difference" as the user types
+document.getElementById("totalBudget").addEventListener("input", calculateInvestDifference);
+document.getElementById("termPremium").addEventListener("input", calculateInvestDifference);
+
 function calculateInvestDifference() {
     const totalBudget = parseFloat(document.getElementById("totalBudget").value);
     const termPremium = parseFloat(document.getElementById("termPremium").value);
