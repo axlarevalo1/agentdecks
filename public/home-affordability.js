@@ -1,31 +1,37 @@
-// Add to top of JS file
-const cityRates = {
-  "Calgary, AB": 0.0061803,
-  "Edmonton, AB": 0.0063231,
-  "Toronto, ON": 0.0066110,
-  "Vancouver, BC": 0.0058320,
-  "Montreal, QC": 0.0089450,
-  "Ottawa, ON": 0.0102310,
-  "Winnipeg, MB": 0.0078910,
-  "Halifax, NS": 0.0091230,
-  "Quebec City, QC": 0.0074510,
-  "Hamilton, ON": 0.0081120,
-  "Saskatoon, SK": 0.0078930,
-  "Regina, SK": 0.0076420
-};
+// Update the JavaScript with this code:
+const cityMillRates = [
+  { city: "Calgary, AB", rate: 0.0061803 },
+  { city: "Edmonton, AB", rate: 0.0063231 },
+  { city: "Toronto, ON", rate: 0.0066110 },
+  { city: "Vancouver, BC", rate: 0.0058320 },
+  { city: "Montreal, QC", rate: 0.0089450 },
+  { city: "Ottawa, ON", rate: 0.0102310 },
+  { city: "Hamilton, ON", rate: 0.0081120 },
+  { city: "Winnipeg, MB", rate: 0.0078910 },
+  { city: "Halifax, NS", rate: 0.0091230 },
+  { city: "Quebec City, QC", rate: 0.0074510 },
+  { city: "Saskatoon, SK", rate: 0.0078930 },
+  { city: "Regina, SK", rate: 0.0076420 }
+];
 
-// Initialize city selector
 document.addEventListener('DOMContentLoaded', () => {
   const citySelect = document.getElementById('citySelect');
-  Object.entries(cityRates).forEach(([city, rate]) => {
+  const millRate = document.getElementById('millRate');
+
+  // Populate city options
+  cityMillRates.forEach(city => {
     const option = document.createElement('option');
-    option.value = rate;
-    option.textContent = city;
+    option.value = city.rate;
+    option.textContent = city.city;
     citySelect.appendChild(option);
   });
 
-  citySelect.addEventListener('change', (e) => {
-    document.getElementById('millRate').value = e.target.value;
+  // Set initial value
+  millRate.value = citySelect.value;
+
+  // Update mill rate when city changes
+  citySelect.addEventListener('change', () => {
+    millRate.value = citySelect.value;
   });
 });
 
