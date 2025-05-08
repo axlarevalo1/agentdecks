@@ -99,6 +99,7 @@ function resetCalculator() {
   const fields = ['income', 'debt', 'condoFees', 'heating', 'interestRate',
                   'resultPayment', 'resultPrice', 'resultDown', 'resultInsurance', 'resultTotalMortgage'];
   fields.forEach(id => document.getElementById(id).value = '');
-  document.getElementById('citySelect').value = "0.0061803";
-  document.getElementById('millRate').value = 0.0061803;
+  const citySelect = document.getElementById('citySelect');
+  citySelect.selectedIndex = 0;
+  document.getElementById('millRate').value = citySelect.value;
 }
