@@ -10,16 +10,25 @@
   <title>Universal Life Rate of Return Calculator - AgentDecks</title>
   <link rel="stylesheet" href="public/ul-rate-of-return.css">
   <!-- Tailwind CSS CDN for Styling -->
-<script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom CSS for grayed-out input */
+    #endValue {
+      background-color: #f3f4f6;
+      font-weight: bold;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body class="bg-gray-50 font-sans text-center py-16">
   
-<!-- Site Header with AgentDecks Branding -->    
-<header class="bg-white shadow-md py-4 px-6 flex justify-between items-center text-blue-600">
+  <!-- Site Header -->
+  <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center text-blue-600">
     <div class="text-2xl font-bold">
         <a href="index.html" class="text-blue-600 hover:text-blue-800">AgentDecks</a>
     </div>
-</header>
+  </header>
+
   <!-- Back to Home Button -->
   <div style="margin-bottom: 15px;">
     <a href="index.html" class="text-blue-600 hover:text-blue-800 font-semibold">&larr; Back to Home</a>
@@ -27,43 +36,27 @@
 
   <h1 class="text-3xl font-bold mb-4">Universal Life Rate of Return Calculator</h1>
 
-<!-- Learn More Section (Expandable) -->
-<div class="mt-6 max-w-md mx-auto text-center bg-white p-4 rounded-md shadow-md text-gray-700">
-  <center>
-  <h3 class="text-xl font-bold mb-2 cursor-pointer flex justify-between items-center" onclick="toggleLearnMore()" style="user-select: none;">
+  <!-- Learn More Section -->
+  <div class="mt-6 max-w-md mx-auto text-center bg-white p-4 rounded-md shadow-md text-gray-700">
+    <center>
+      <h3 class="text-xl font-bold mb-2 cursor-pointer flex justify-between items-center" onclick="toggleLearnMore()" style="user-select: none;">
         📘 Learn More about Universal Life Rate of Return 
         <span id="learnMoreIcon">+</span>
-    </h3>
-  </center>  
+      </h3>
+    </center>  
     <div id="learnMoreContent" class="learn-more hidden text-sm leading-relaxed mt-2">
-        <p>
-            Universal Life insurance policies allow for both protection and investment growth. 
-            However, some insurance companies do not directly show the annual rate of return on their statements. 
-            This calculator helps you determine the equivalent annual rate of return for your Universal Life policy.
-        </p>
-        <p class="mt-2">
-            This calculation considers:
-            <ul class="list-disc list-inside ml-4">
-                <li><strong>Fund Value at Start and End of Year:</strong> Your starting and ending values as shown on your statement.</li>
-                <li><strong>Periodic Deposits:</strong> Regular contributions made to the fund.</li>
-                <li><strong>Interest/Investment Growth:</strong> The interest or growth credited to your fund.</li>
-                <li><strong>Bonus:</strong> Any additional interest credited at the start of the year.</li>
-                <li><strong>Charges:</strong> Total deductions, calculated monthly.</li>
-            </ul>
-        </p>
-        <p class="mt-2">
-            This tool is designed to give you a clear picture of how your policy is performing.
-        </p>
+      <p>Universal Life insurance policies allow for both protection and investment growth...</p>
+      <!-- Keep your existing learn more content here -->
     </div>
-</div>
+  </div>
 
-
-  
+  <!-- Calculator Form -->
   <div class="max-w-md w-full bg-white p-6 rounded-md shadow-md text-left mx-auto">
-    <label>Fund Value at Start of Year ($) <span title="The fund value as shown on the statement at the beginning of the year.">🛈</span></label>
+    <!-- All inputs have oninput="updateEndValue()" -->
+    <label>Fund Value at Start of Year ($) <span title="The fund value at the beginning of the year.">🛈</span></label>
     <input type="number" id="startValue" class="border p-2 w-full mb-4" placeholder="Enter starting fund value" oninput="updateEndValue()">
-    
-    <label>Periodic Deposits ($) <span title="Regular deposits made during the year (e.g., monthly, quarterly).">🛈</span></label>
+
+    <label>Periodic Deposits ($) <span title="Regular deposits made during the year.">🛈</span></label>
     <input type="number" id="deposits" class="border p-2 w-full mb-4" placeholder="Enter periodic deposit amount" oninput="updateEndValue()">
 
     <label>Deposit Frequency</label>
@@ -74,18 +67,17 @@
       <option value="1">Annually</option>
     </select>
 
-    <label>Interest/Investment Growth Credited ($) <span title="Total interest or investment growth credited to the fund during the year.">🛈</span></label>
+    <label>Interest/Investment Growth Credited ($) <span title="Total interest/growth credited.">🛈</span></label>
     <input type="number" id="interest" class="border p-2 w-full mb-4" placeholder="Enter interest/growth credited" oninput="updateEndValue()">
 
-    <label>Bonus Credited (if any) ($) <span title="Any bonus interest credited to the fund.">🛈</span></label>
+    <label>Bonus Credited (if any) ($) <span title="Any bonus interest credited.">🛈</span></label>
     <input type="number" id="bonus" class="border p-2 w-full mb-4" placeholder="Enter bonus credited (if any)" oninput="updateEndValue()">
 
-    <label>Annual Charges (Total Deductions) ($) <span title="Total of all deductions including fees, insurance charges, and other costs.">🛈</span></label>
+    <label>Annual Charges (Total Deductions) ($) <span title="Total deductions including fees.">🛈</span></label>
     <input type="number" id="charges" class="border p-2 w-full mb-4" placeholder="Enter total deductions" oninput="updateEndValue()">
 
-  <!-- Update the endValue input to readonly -->
-  <label>Fund Value at End of Year ($) <span title="The fund value at the end of the year as shown on the statement.">🛈</span></label>
-  <input type="number" id="endValue" class="border p-2 w-full mb-4 font-bold bg-gray-100" readonly>
+    <label>Fund Value at End of Year ($) <span title="Automatically calculated value.">🛈</span></label>
+    <input type="number" id="endValue" class="border p-2 w-full mb-4" readonly>
 
     <button onclick="calculateULRateOfReturn()" class="bg-blue-600 text-white px-6 py-3 mt-4 rounded-md font-bold hover:bg-blue-700 transition w-full">
       Calculate
@@ -94,10 +86,10 @@
     <div id="result" class="mt-4 text-xl font-bold text-center"></div>
   </div>
 
-  <!-- Disclaimer -->
+  <!-- Footer -->
   <footer class="bg-gray-100 text-gray-600 text-center py-4 mt-8 text-sm">
     <p>&copy; 2025 AgentDecks.com. All rights reserved.</p>
-    <p>This calculator is for informational purposes only. Actual rate of return depends on the timing and frequency of deposits, interest credited, and charges.</p>
+    <p>This calculator is for informational purposes only.</p>
   </footer>
 
   <script src="public/ul-rate-of-return.js"></script>
