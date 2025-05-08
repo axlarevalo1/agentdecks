@@ -143,37 +143,3 @@ function sendHeightToParent() {
 }
 window.addEventListener('load', sendHeightToParent);
 window.addEventListener('resize', sendHeightToParent);
-
-function toggleSection(sectionId) {
-  const section = document.getElementById(sectionId);
-  const isActive = section.classList.toggle('active');
-  
-  // Rotate arrow
-  const arrow = section.previousElementSibling.querySelector('span');
-  arrow.style.transform = isActive ? 'rotate(90deg)' : 'rotate(0deg)';
-}
-
-// Initialize main section as open
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('mainSection').classList.add('active');
-});
-
-  const section = sections[sectionId];
-  if (!section) return;
-
-  const content = section.content;
-  const isActive = content.classList.toggle('active');
-  
-  // Update icon
-  section.icon.textContent = isActive ? '▼' : '►';
-  
-  // Set dynamic height
-  content.style.maxHeight = isActive ? `${content.scrollHeight}px` : '0';
-}
-
-// Initialize main section as expanded
-document.addEventListener('DOMContentLoaded', () => {
-  const mainSection = document.getElementById('mainSection');
-  mainSection.classList.add('active');
-  mainSection.style.maxHeight = `${mainSection.scrollHeight}px`;
-});
