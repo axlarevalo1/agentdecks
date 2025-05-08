@@ -11,72 +11,77 @@
   <title>Canada Mortgage Calculator - AgentDecks</title>
   <link rel="stylesheet" href="public/mortgage-amortization.css">
   <!-- Tailwind CSS CDN for Styling -->
-<script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
 
 <!-- Site Header with AgentDecks Branding -->    
-<header class="bg-white shadow-md py-4 px-6 flex justify-between items-center text-blue-600">
-    <div class="text-2xl font-bold">
+<header class="bg-white shadow-md py-4 px-6 flex justify-between items-center text-blue-600 w-full">
+    <div class="text-2xl font-bold mx-auto text-center">
         <a href="index.html" class="text-blue-600 hover:text-blue-800">AgentDecks</a>
     </div>
 </header>  
+
 <!-- Back to Home Button -->
-<div style="margin-bottom: 15px;">
-  <a href="index.html" style="text-decoration: none; color: blue;">&larr; Back to Home</a>
+<div class="mt-4 text-center">
+  <a href="index.html" class="text-blue-600 hover:text-blue-800 font-semibold">&larr; Back to Home</a>
 </div>
-  
-  <h1>Canada Mortgage Calculator</h1>
 
-  <label for="purchasePrice">Purchase Price ($)</label>
-  <input type="number" id="purchasePrice" value="650000" />
+<!-- Calculator Section - Centered -->
+<div class="bg-white shadow-md rounded-md p-6 max-w-lg mx-auto mt-6 text-center">
+  <h1 class="text-2xl font-bold mb-4">Canada Mortgage Calculator</h1>
 
-  <label for="downPaymentPercent">Down Payment (%)</label>
-  <select id="downPaymentPercent">
-    <option value="tiered" selected>5% on first $500,000 + 10% on remainder</option>
-    <option value="10">10%</option>
-    <option value="15">15%</option>
-    <option value="20">20%</option>
-    <option value="25">25%</option>
-    <option value="35">35%</option>
-  </select>
+  <div class="space-y-4">
+    <label for="purchasePrice">Purchase Price ($)</label>
+    <input type="number" id="purchasePrice" class="border rounded-md w-full p-2" value="650000" />
 
-  <label for="downPaymentAmount">Down Payment Amount ($)</label>
-  <input type="text" id="downPaymentAmount" class="readonly-input" readonly />
+    <label for="downPaymentPercent">Down Payment (%)</label>
+    <select id="downPaymentPercent" class="border rounded-md w-full p-2">
+      <option value="tiered" selected>5% on first $500,000 + 10% on remainder</option>
+      <option value="10">10%</option>
+      <option value="15">15%</option>
+      <option value="20">20%</option>
+      <option value="25">25%</option>
+      <option value="35">35%</option>
+    </select>
 
-  <label for="mortgageInsurance">Mortgage Default Insurance (CMHC/Sagen/CG) [?]</label>
-  <input type="text" id="mortgageInsurance" class="readonly-input" readonly />
+    <label for="downPaymentAmount">Down Payment Amount ($)</label>
+    <input type="text" id="downPaymentAmount" class="readonly-input border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly />
 
-  <label for="interestRate">Interest Rate (%)</label>
-  <input type="number" id="interestRate" value="4.5" />
+    <label for="mortgageInsurance">Mortgage Default Insurance (CMHC/Sagen/CG)</label>
+    <input type="text" id="mortgageInsurance" class="readonly-input border rounded-md w-full p-2 bg-gray-100 text-gray-600" readonly />
 
-  <label for="amortization">Amortization Period</label>
-  <select id="amortization">
-    <option value="10">10 years</option>
-    <option value="15">15 years</option>
-    <option value="20">20 years</option>
-    <option value="25">25 years</option>
-    <option value="30" selected>30 years</option>
-  </select>
+    <label for="interestRate">Interest Rate (%)</label>
+    <input type="number" id="interestRate" class="border rounded-md w-full p-2" value="4.5" />
 
-  <label for="startDate">Start Date</label>
-  <input type="date" id="startDate" value="2025-04-21" />
+    <label for="amortization">Amortization Period</label>
+    <select id="amortization" class="border rounded-md w-full p-2">
+      <option value="10">10 years</option>
+      <option value="15">15 years</option>
+      <option value="20">20 years</option>
+      <option value="25">25 years</option>
+      <option value="30" selected>30 years</option>
+    </select>
 
-  <div style="margin-top: 30px;">
+    <label for="startDate">Start Date</label>
+    <input type="date" id="startDate" class="border rounded-md w-full p-2" value="2025-04-21" />
+  </div>
+
+  <div class="mt-6 text-left">
     <strong>Loan Amount:</strong> <span id="loanAmount">$0.00</span><br />
     <strong>Estimated Monthly Payment:</strong> <span id="monthlyPayment">$0.00</span>
   </div>
 
-  <div id="amortizationTable" style="margin-top: 40px;"></div>
+  <div id="amortizationTable" class="mt-6"></div>
+</div>
 
-  <script src="public/mortgage-amortization.js"></script>
-  
 <!-- Disclaimer Section -->
 <footer class="bg-gray-100 text-gray-600 text-center py-4 mt-8 text-sm">
     <p>&copy; 2025 AgentDecks.com. All rights reserved.</p>
     <p>This calculator is for informational purposes only and should not be considered financial advice. Please consult a financial advisor for personalized advice.</p>
 </footer>
 
-  
+<script src="public/mortgage-amortization.js"></script>
+
 </body>
 </html>
