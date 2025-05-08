@@ -1,4 +1,6 @@
 // public/compound-interest.js
+let compoundInterestChart;
+
 function calculateCompoundInterest() {
     const principal = parseFloat(document.getElementById("principal").value);
     const rate = parseFloat(document.getElementById("rate").value) / 100;
@@ -14,10 +16,10 @@ function calculateCompoundInterest() {
     }
 
     let balance = principal;
-    const table = document.createElement("table");
-    table.innerHTML = "<tr><th>Year</th><th>Starting Balance</th><th>Contributions</th><th>Interest</th><th>Ending Balance</th></tr>";
+    const yearsArray = [];
+    const valuesArray = [];
 
-    for (let i = 1; i <= years; i++) {
+    for (let i = 0; i <= years; i++) {
         const startBalance = balance;
         const annualContrib = (i <= stopYear) ? contribution * frequency : 0;
         balance += annualContrib;
@@ -25,16 +27,53 @@ function calculateCompoundInterest() {
         const interest = balance * Math.pow((1 + rate / compounds), compounds) - balance;
         balance += interest;
 
-        table.innerHTML += `<tr>
-            <td>${i}</td>
-            <td>$${startBalance.toFixed(2)}</td>
-            <td>$${annualContrib.toFixed(2)}</td>
-            <td>$${interest.toFixed(2)}</td>
-            <td>$${balance.toFixed(2)}</td>
-        </tr>`;
+        yearsArray.push(i);
+        valuesArray.push(balance);
     }
 
     document.getElementById("result").innerText = `Final Value: $${balance.toFixed(2)}`;
-    document.getElementById("amortizationTable").innerHTML = "";
-    document.getElementById("amortizationTable").appendChild(table);
+    renderChart(yearsArray, valuesArray);
+}
+
+// Function to Render the Chart
+function renderChart(years, values) {
+    const ctx = document.getElementById("compoundInterestChart").getContext("2d");
+
+    if (compoundInterestChart) {
+        compoundInterestChart.destroy();
+    }
+
+    compoundInterestChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'Investment Growth',
+                data: values,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2,
+                pointRadius: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Years'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Future Value ($)'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
