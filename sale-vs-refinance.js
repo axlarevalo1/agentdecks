@@ -40,13 +40,28 @@ function calculateSaleProceeds() {
     document.getElementById("saleProceeds").innerText = `$${netProceeds.toFixed(2)}`;
 }
 
+// Function to Sync Property Value and Projected Sale Price
+function syncValues(event) {
+    const source = event.target.id;
+    const value = parseFloat(event.target.value) || 0;
+
+    if (source === "propertyValue") {
+        document.getElementById("salePrice").value = value;
+        calculateSaleProceeds();
+    } else if (source === "salePrice") {
+        document.getElementById("propertyValue").value = value;
+        calculateRefinance();
+    }
+}
+
 // Event Listeners for Auto-Calculation
-document.getElementById("propertyValue").addEventListener("input", calculateRefinance);
+document.getElementById("propertyValue").addEventListener("input", syncValues);
+document.getElementById("salePrice").addEventListener("input", syncValues);
+
 document.getElementById("ltv").addEventListener("change", calculateRefinance);
 document.getElementById("currentMortgage").addEventListener("input", calculateRefinance);
 document.getElementById("mortgagePenalty").addEventListener("input", calculateRefinance);
 
-document.getElementById("salePrice").addEventListener("input", calculateSaleProceeds);
 document.getElementById("saleMortgage").addEventListener("input", calculateSaleProceeds);
 document.getElementById("salePenalty").addEventListener("input", calculateSaleProceeds);
 document.getElementById("realtyFees").addEventListener("input", calculateSaleProceeds);
