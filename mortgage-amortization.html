@@ -42,14 +42,16 @@
 
   <main class="max-w-6xl mx-auto px-4 py-8">
     <div class="prose max-w-2xl mx-auto my-8">
-      <h2 class="text-2xl font-bold text-blue-600 mb-4 cursor-pointer flex items-center" onclick="toggleSection('main')">
-        <span class="mr-2">▼</span> Why This Mortgage Calculator is a powerful tool for Realtors and Home Buyers
-      </h2>
-
-      <div id="mainSection" class="section-content">
+  <div class="collapsible-section bg-white rounded-lg shadow-md p-6 mb-8 cursor-pointer" 
+       onclick="toggleSection('main')">
+    <h2 class="text-2xl font-bold text-blue-600 mb-4 flex items-center">
+      <span class="mr-2">▼</span> Why This Mortgage Calculator is Powerful
+    </h2>
+    
+    <div id="mainSection" class="section-content">
         <div class="collapsible-section">
-          <h3 class="text-xl font-semibold mb-3 cursor-pointer flex items-center" onclick="toggleSection('pro')">
-            <span class="mr-2">►</span> 🏆 Professional Advantage for Realtors
+ <div class="collapsible-subsection">
+        <h3 class="text-xl font-semibold mb-3">🏆 Professional Advantage</h3> 🏆 Professional Advantage for Realtors
           </h3>
           <div id="proSection" class="section-subcontent hidden pl-6">
             <p class="mb-4">This tool elevates your client consultations by providing:</p>
