@@ -33,12 +33,16 @@ function calculateInvestments() {
     // Lump-Sum Investment Calculation
     let lumpSumBalance = loanPrincipal * Math.pow(1 + rateOfReturn, years);
     const loanBalance = loanPrincipal;
-
     const netEquity = lumpSumBalance - loanBalance;
 
-    // Display Results
-    document.getElementById("monthlyBalanceResult").innerText = `$${monthlyBalance.toFixed(2)}`;
-    document.getElementById("lumpSumBalanceResult").innerText = `$${lumpSumBalance.toFixed(2)}`;
-    document.getElementById("loanBalanceResult").innerText = `$${loanBalance.toFixed(2)}`;
-    document.getElementById("netEquityResult").innerText = `$${netEquity.toFixed(2)}`;
+    // Display Results with Commas
+    document.getElementById("monthlyBalanceResult").innerText = formatCurrency(monthlyBalance);
+    document.getElementById("lumpSumBalanceResult").innerText = formatCurrency(lumpSumBalance);
+    document.getElementById("loanBalanceResult").innerText = formatCurrency(loanBalance);
+    document.getElementById("netEquityResult").innerText = formatCurrency(netEquity);
+}
+
+// Function to Format Numbers with Commas
+function formatCurrency(value) {
+    return `$${value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 }
