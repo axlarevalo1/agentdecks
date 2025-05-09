@@ -93,8 +93,23 @@
     <label>Mortgage Penalty (if known) ($)</label>
     <input type="number" id="salePenalty" class="border p-2 w-full mb-3">
 
-    <label>Realty Fees ($)</label>
-    <input type="number" id="realtyFees" class="border p-2 w-full mb-3" placeholder="Enter expected realty fees">
+<div class="flex gap-3 mb-3">
+  <div class="flex-1">
+    <label>Realty Fees Preset</label>
+    <select id="realtyFeePreset" class="border p-2 w-full" onchange="updateRealtyFees()">
+      <option value="7+3" selected>7% on first $100k + 3% on remainder</option>
+      <option value="6">6% of total</option>
+      <option value="5">5% of total</option>
+      <option value="4">4% of total</option>
+      <option value="2">2% of total</option>
+      <option value="other">OTHER</option>
+    </select>
+  </div>
+  <div class="flex-1">
+    <label>Realty Fees Payable ($)</label>
+    <input type="number" id="realtyFees" class="border p-2 w-full bg-gray-100" disabled>
+  </div>
+</div>
 
     <label>Legal Fees ($)</label>
     <input type="number" id="legalFees" class="border p-2 w-full mb-3" placeholder="Enter expected legal fees">
