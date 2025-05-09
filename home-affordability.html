@@ -14,70 +14,94 @@ r<!DOCTYPE html>
   <!-- Tailwind CSS CDN for Styling -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="public/home-affordability.js"></script>
-    <style>
+  <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Open Sans', sans-serif;
       background-color: #f4f7fc;
     }
+
+    .info-section {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .info-section h2 {
+      font-size: 1.75rem;
+      color: #0044cc;
+      margin-bottom: 10px;
+    }
+
+    .info-section p {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
     .calculator-container {
       max-width: 600px;
       margin: 0 auto;
-      padding: 20px;
       background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 25px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
-    .header {
-      background-color: #0066cc;
-      color: white;
-      padding: 15px 20px;
+
+    .calculator-container h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0044cc;
       text-align: center;
-      border-bottom: 4px solid #004a99;
+      margin-bottom: 20px;
     }
-    .header h1 {
-      font-size: 1.75rem;
-      margin: 0;
-    }
+
     label {
       font-weight: bold;
       display: block;
       margin-bottom: 8px;
+      color: #333;
     }
+
     input, select {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
       border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-    .calculate-btn {
-      background-color: #28a745;
-      color: #fff;
-      border: none;
-      padding: 12px 20px;
+      border-radius: 8px;
       font-size: 1rem;
-      border-radius: 5px;
+    }
+
+    .submit-btn {
+      background-color: #007bff;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 1rem;
       width: 100%;
       transition: background 0.3s;
     }
-    .calculate-btn:hover {
-      background-color: #218838;
+
+    .submit-btn:hover {
+      background-color: #0056b3;
     }
-    .info-section {
-      background-color: #e9f5ff;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
+
+    .disclaimer {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 15px;
     }
   </style>
+</head>
 </head>
 <body>
 
 <!-- Site Header with AgentDecks Branding -->    
-<header class="bg-white shadow-md py-4 px-6 flex justify-between items-center text-blue-600">
+<header class="bg-blue-600 text-white py-4 px-6 text-center">
     <div class="text-2xl font-bold">
-        <a href="index.html" class="text-blue-600 hover:text-blue-800">AgentDecks</a>
+        <a href="index.html" class="text-white hover:text-gray-200">AgentDecks</a>
     </div>
 </header>
   
@@ -89,11 +113,10 @@ r<!DOCTYPE html>
 <section class="max-w-4xl mx-auto py-8 px-4">
   
 <!-- Header section -->
-    <div class="info-section">
-        <h2 class="text-blue-600 font-bold text-lg">How This Calculator Helps You, the Professional</h2>
-        <p>As a real estate professional, setting the right expectations with buyers is crucial. This Home Affordability Calculator helps you quickly show your clients how much home they can realistically afford, including the impact of different down payment options, debt repayment, and interest rate changes.</p>
-        <p class="text-sm mt-2 text-gray-700">⚠️ This tool provides an estimate only. It is not a mortgage approval. For an official pre-approval, clients should connect with a licensed mortgage professional.</p>
-    </div>
+<section class="info-section">
+  <h2>Why This Home Affordability Calculator is Essential</h2>
+  <p>Transform complex mortgage math into clear outcomes – make informed decisions with confidence.</p>
+</section>
   
   <script src="script.js" defer></script>
   <div class="calculator-container">
