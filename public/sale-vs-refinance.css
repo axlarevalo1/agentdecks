@@ -152,3 +152,27 @@ button:hover {
         width: 90%;
     }
 }
+
+/* Add these new styles */
+.net-amount {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #28a745; /* Green color to match sale section */
+}
+
+.refinance-amount {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a73e8; /* Blue color to match refinance section */
+}
+
+/* Update the Result Section styles */
+.text-left p {
+    margin: 0.75rem 0;
+    font-size: 1rem;
+}
+
+.text-left h3 {
+    margin: 1.5rem 0 1rem;
+    font-size: 1.5rem;
+}
