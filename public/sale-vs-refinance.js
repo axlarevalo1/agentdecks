@@ -15,7 +15,7 @@ function calculateRefinance() {
 
     // Calculate Proceeds upon Refinance
     const refinanceProceeds = maxLoanAmount - currentMortgage - mortgagePenalty;
-    document.getElementById("refinanceProceeds").innerText = `$${refinanceProceeds.toFixed(2)}`;
+    document.getElementById("refinanceProceeds").innerText = `$${refinanceProceeds.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
 
     // Calculate Monthly Payment based on user-selected Interest Rate
     const monthlyRate = interestRate / 12;
@@ -150,7 +150,7 @@ function calculateSaleProceeds() {
 
     // Calculate Net Sale Proceeds
     const netProceeds = salePrice - saleMortgage - salePenalty - realtyFees - legalFees - adjustments;
-    document.getElementById("saleProceeds").innerText = `$${netProceeds.toFixed(2)}`;
+    document.getElementById("saleProceeds").innerText = `$${netProceeds.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
 }
 
 // Event Listeners for Auto-Calculation
