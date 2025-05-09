@@ -1,4 +1,22 @@
-/* General Layout */
+header {
+    background-color: #0044cc; /* Blue background */
+    color: white; /* White text color */
+    width: 100%;
+    padding: 15px 20px;
+    text-align: left;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+header a:hover {
+    color: #cce0ff; /* Slightly lighter hover color */
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
