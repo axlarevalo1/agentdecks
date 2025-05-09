@@ -74,20 +74,26 @@ function syncMortgageDetails(event) {
 
     if (source === "currentMortgage") {
         document.getElementById("saleMortgage").value = value;
-        calculateSaleProceeds();
+        calculateSaleProceeds(); // Existing call
     } else if (source === "saleMortgage") {
         document.getElementById("currentMortgage").value = value;
         calculateRefinance();
+        calculateSaleProceeds(); // Added this line
     }
 
     if (source === "mortgagePenalty") {
         document.getElementById("salePenalty").value = value;
-        calculateSaleProceeds();
+        calculateSaleProceeds(); // Existing call
     } else if (source === "salePenalty") {
         document.getElementById("mortgagePenalty").value = value;
         calculateRefinance();
+        calculateSaleProceeds(); // Added this line
     }
 }
+
+// Add direct listeners for sale-side mortgage inputs
+document.getElementById("saleMortgage").addEventListener("input", calculateSaleProceeds);
+document.getElementById("salePenalty").addEventListener("input", calculateSaleProceeds);
 
 // Function to update Realty Fees
 function updateRealtyFees() {
@@ -171,3 +177,5 @@ document.getElementById("salePenalty").addEventListener("input", syncMortgageDet
 document.getElementById("realtyFees").addEventListener("input", calculateSaleProceeds);
 document.getElementById("legalFees").addEventListener("input", calculateSaleProceeds);
 document.getElementById("adjustments").addEventListener("input", calculateSaleProceeds);
+document.getElementById("saleMortgage").addEventListener("input", calculateSaleProceeds);
+document.getElementById("salePenalty").addEventListener("input", calculateSaleProceeds);
