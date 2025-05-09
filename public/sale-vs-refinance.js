@@ -89,6 +89,56 @@ function syncMortgageDetails(event) {
     }
 }
 
+// Function to update Realty Fees
+function updateRealtyFees() {
+  const preset = document.getElementById('realtyFeePreset').value;
+  const realtyFeesInput = document.getElementById('realtyFees');
+  const salePrice = parseFloat(document.getElementById('salePrice').value) || 0;
+
+  if (preset === 'other') {
+    realtyFeesInput.disabled = false;
+    realtyFeesInput.classList.remove('bg-gray-100');
+    realtyFeesInput.value = '';
+    realtyFeesInput.placeholder = 'Enter custom fees';
+  } else {
+    realtyFeesInput.disabled = true;
+    realtyFeesInput.classList.add('bg-gray-100');
+    let fees = 0;
+
+    switch(preset) {
+      case '7+3':
+        fees = salePrice <= 100000 ? 
+          salePrice * 0.07 : 
+          7000 + (salePrice - 100000) * 0.03;
+        break;
+      case '6':
+        fees = salePrice * 0.06;
+        break;
+      case '5':
+        fees = salePrice * 0.05;
+        break;
+      case '4':
+        fees = salePrice * 0.04;
+        break;
+      case '2':
+        fees = salePrice * 0.02;
+        break;
+    }
+
+    realtyFeesInput.value = fees.toFixed(2);
+  }
+  calculateSaleProceeds();
+}
+
+// Update event listeners to include realty fee updates
+document.getElementById("salePrice").addEventListener("input", function(e) {
+  syncValues(e);
+  updateRealtyFees();
+});
+
+// Initialize realty fees on first load
+updateRealtyFees();
+
 // Function to calculate Net Sale Proceeds
 function calculateSaleProceeds() {
     const salePrice = parseFloat(document.getElementById("salePrice").value);
