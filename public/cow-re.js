@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const totalRentPaidInput = document.getElementById("totalRentPaid");
     const totalInterestPaidInput = document.getElementById("totalInterestPaid");
     const totalCostInput = document.getElementById("totalCost");
+    const saveTimelineOutput = document.getElementById("saveTimeline");
 
     monthlySavingsInput.value = 500; // Default value for monthly savings
 
@@ -29,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
     homeValueIncreaseInput.addEventListener("change", calculateAll);
     mortgageRateChangeInput.addEventListener("change", calculateAll);
     rentInflationInput.addEventListener("change", calculateAll);
+
+    document.getElementById("resetButton").addEventListener("click", resetCalculator);
 
     function calculateAll() {
         calculateMinimumDownPayment();
@@ -82,6 +85,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const monthlySavings = parseFloat(monthlySavingsInput.value);
         const yearsToSave = (0.2 * homePrice - parseFloat(minDownPaymentInput.value)) / (monthlySavings * 12);
 
+        const monthsToSave = Math.round(yearsToSave * 12);
+        const saveYears = Math.floor(monthsToSave / 12);
+        const saveMonths = monthsToSave % 12;
+        saveTimelineOutput.textContent = `${saveYears} years, ${saveMonths} months`;
+
         const futureHomePrice = homePrice * Math.pow(1 + parseFloat(homeValueIncreaseInput.value) / 100, yearsToSave);
         futureHomePriceInput.value = futureHomePrice.toFixed(2);
 
@@ -93,5 +101,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const futureMonthlyPayment = (futureMortgage * (futureInterestRate / 100 / 12)) / (1 - Math.pow(1 + (futureInterestRate / 100 / 12), -360));
 
         futureMonthlyPaymentInput.value = futureMonthlyPayment.toFixed(2);
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll("input").forEach(input => input.value = "");
+        saveTimelineOutput.textContent = "";
+        monthlySavingsInput.value = 500;
     }
 });
