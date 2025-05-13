@@ -22,14 +22,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const totalCostInput = document.getElementById("totalCost");
     const saveTimelineOutput = document.getElementById("saveTimeline");
 
-    monthlySavingsInput.value = 500; // Default value for monthly savings
+    monthlySavingsInput.value = 500;
 
     homePriceInput.addEventListener("input", calculateAll);
     interestRateInput.addEventListener("input", calculateAll);
     monthlySavingsInput.addEventListener("input", calculateAll);
     homeValueIncreaseInput.addEventListener("change", calculateAll);
     mortgageRateChangeInput.addEventListener("change", calculateAll);
-    rentInflationInput.addEventListener("change", calculateAll);
 
     document.getElementById("resetButton").addEventListener("click", resetCalculator);
 
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function calculateCMHCPremium(downPayment, homePrice) {
         const mortgageAmount = homePrice - downPayment;
-        let premiumRate = downPayment / homePrice >= 0.2 ? 0 : downPayment / homePrice < 0.1 ? 0.04 : downPayment / homePrice < 0.15 ? 0.031 : 0.028;
+        const premiumRate = downPayment / homePrice >= 0.2 ? 0 : downPayment / homePrice < 0.1 ? 0.04 : downPayment / homePrice < 0.15 ? 0.031 : 0.028;
 
         const premium = mortgageAmount * premiumRate;
         cmhcPremiumInput.value = premium.toFixed(2);
@@ -83,29 +82,41 @@ document.addEventListener("DOMContentLoaded", function() {
     function calculateFutureValues() {
         const homePrice = parseFloat(homePriceInput.value);
         const monthlySavings = parseFloat(monthlySavingsInput.value);
+
+        if (isNaN(homePrice) || isNaN(monthlySavings) || monthlySavings <= 0) return;
+
         const yearsToSave = (0.2 * homePrice - parseFloat(minDownPaymentInput.value)) / (monthlySavings * 12);
-
-        const monthsToSave = Math.round(yearsToSave * 12);
-        const saveYears = Math.floor(monthsToSave / 12);
-        const saveMonths = monthsToSave % 12;
-        saveTimelineOutput.textContent = `${saveYears} years, ${saveMonths} months`;
-
         const futureHomePrice = homePrice * Math.pow(1 + parseFloat(homeValueIncreaseInput.value) / 100, yearsToSave);
+
         futureHomePriceInput.value = futureHomePrice.toFixed(2);
 
         const futureDownPayment = futureHomePrice * 0.2;
         futureDownPaymentInput.value = futureDownPayment.toFixed(2);
 
         const futureMortgage = futureHomePrice - futureDownPayment;
-        const futureInterestRate = parseFloat(interestRateInput.value) + parseFloat(mortgageRateChangeInput.value);
-        const futureMonthlyPayment = (futureMortgage * (futureInterestRate / 100 / 12)) / (1 - Math.pow(1 + (futureInterestRate / 100 / 12), -360));
+        const futureInterestRate = (parseFloat(interestRateInput.value) + parseFloat(mortgageRateChangeInput.value)) / 100 / 12;
 
+        const futureMonthlyPayment = (futureMortgage * futureInterestRate) / (1 - Math.pow(1 + futureInterestRate, -360));
         futureMonthlyPaymentInput.value = futureMonthlyPayment.toFixed(2);
+
+        const totalInterestPaid = (futureMonthlyPayment * 360) - futureMortgage;
+        totalInterestPaidInput.value = totalInterestPaid.toFixed(2);
+
+        const totalRentPaid = monthlySavings * 12 * yearsToSave;
+        totalRentPaidInput.value = totalRentPaid.toFixed(2);
+
+        const totalCost = totalRentPaid + (futureMonthlyPayment * 360);
+        totalCostInput.value = totalCost.toFixed(2);
+
+        const monthsToSave = Math.round(yearsToSave * 12);
+        const saveYears = Math.floor(monthsToSave / 12);
+        const saveMonths = monthsToSave % 12;
+        saveTimelineOutput.textContent = `${saveYears} years, ${saveMonths} months`;
     }
 
     function resetCalculator() {
         document.querySelectorAll("input").forEach(input => input.value = "");
-        saveTimelineOutput.textContent = "";
+        saveTimelineOutput.textContent = "0 years, 0 months";
         monthlySavingsInput.value = 500;
     }
 });
