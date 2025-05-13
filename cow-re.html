@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate the cost of waiting to save up for a 20% down payment versus buying now with a minimum down payment.">
+    <title>Cost of Waiting Calculator</title>
+    <link rel="stylesheet" href="public/cow-re.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0795527334455170" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="bg-blue-600 py-4 px-6 flex justify-between items-center text-white">
+        <div class="text-2xl font-bold">
+            <a href="index.html" class="text-white hover:text-gray-200">AgentDecks</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto my-8 px-4">
+        <h1 class="text-3xl font-bold mb-4">The Cost of Waiting Calculator</h1>
+        <div class="grid grid-cols-3 gap-6">
+            <div class="p-4 border rounded">
+                <h2 class="font-semibold text-lg">If I Were to Buy Today</h2>
+                <label>Current Rent Paid:</label><input type="number" id="currentRent" class="w-full mb-2">
+                <label>Current Desired Home Price:</label><input type="number" id="homePrice" class="w-full mb-2">
+                <label>Minimum Down Payment (Auto-Calculated):</label><input type="text" id="minDownPayment" class="w-full mb-2" readonly>
+                <label>CMHC Premium (Auto-Calculated):</label><input type="text" id="cmhcPremium" class="w-full mb-2" readonly>
+                <label>Total Mortgage Balance:</label><input type="text" id="mortgageBalance" class="w-full mb-2" readonly>
+                <label>Current Mortgage Interest Rate (%):</label><input type="number" id="interestRate" value="4" class="w-full mb-2">
+                <label>Monthly Mortgage Payment (30 Years):</label><input type="text" id="monthlyPayment" class="w-full mb-2" readonly>
+            </div>
+
+            <div class="p-4 border rounded">
+                <h2 class="font-semibold text-lg">How Long Will I Wait?</h2>
+                <label>Savings per Month:</label><input type="number" id="monthlySavings" class="w-full mb-2">
+                <label>Home Value Increase (%):</label>
+                <select id="homeValueIncrease" class="w-full mb-2">
+                    <option value="2">2%</option>
+                    <option value="3" selected>3%</option>
+                    <option value="4">4%</option>
+                    <option value="5">5%</option>
+                </select>
+                <label>Mortgage Rate Change (%):</label>
+                <select id="mortgageRateChange" class="w-full mb-2">
+                    <option value="-3">-3%</option>
+                    <option value="-2">-2%</option>
+                    <option value="-1">-1%</option>
+                    <option value="0" selected>No Change</option>
+                    <option value="1">+1%</option>
+                    <option value="2">+2%</option>
+                    <option value="3">+3%</option>
+                </select>
+                <label>Inflation on Rent (%):</label>
+                <select id="rentInflation" class="w-full mb-2">
+                    <option value="1">1%</option>
+                    <option value="2">2%</option>
+                    <option value="3" selected>3%</option>
+                    <option value="4">4%</option>
+                    <option value="5">5%</option>
+                    <option value="6">6%</option>
+                    <option value="7">7%</option>
+                </select>
+            </div>
+
+            <div class="p-4 border rounded">
+                <h2 class="font-semibold text-lg">My Future Payments</h2>
+                <label>Future Home Price:</label><input type="text" id="futureHomePrice" class="w-full mb-2" readonly>
+                <label>20% Down Payment:</label><input type="text" id="futureDownPayment" class="w-full mb-2" readonly>
+                <label>Future Mortgage Payment:</label><input type="text" id="futureMonthlyPayment" class="w-full mb-2" readonly>
+                <label>Total Rent Paid While Waiting:</label><input type="text" id="totalRentPaid" class="w-full mb-2" readonly>
+                <label>Total Interest Paid (30 Years):</label><input type="text" id="totalInterestPaid" class="w-full mb-2" readonly>
+                <label>Total Rent + Mortgage Payments:</label><input type="text" id="totalCost" class="w-full mb-2" readonly>
+            </div>
+        </div>
+    </main>
+
+    <script src="public/cow-re.js"></script>
+</body>
+</html>
