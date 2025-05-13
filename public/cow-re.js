@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const interestRateInput = document.getElementById("interestRate");
     const monthlyPaymentInput = document.getElementById("monthlyPayment");
 
+    const totalInterestPaidNowInput = document.getElementById("totalInterestPaidNow");
+    const totalPaymentsNowInput = document.getElementById("totalPaymentsNow");
+
     const monthlySavingsInput = document.getElementById("monthlySavings");
     const homeValueIncreaseInput = document.getElementById("homeValueIncrease");
     const mortgageRateChangeInput = document.getElementById("mortgageRateChange");
@@ -18,7 +21,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const totalInterestPaidInput = document.getElementById("totalInterestPaid");
     const totalCostInput = document.getElementById("totalCost");
 
-    homePriceInput.addEventListener("input", calculateMinimumDownPayment);
+    monthlySavingsInput.value = 500; // Default value for monthly savings
+
+    homePriceInput.addEventListener("input", calculateAll);
+    interestRateInput.addEventListener("input", calculateAll);
+    monthlySavingsInput.addEventListener("input", calculateAll);
+    homeValueIncreaseInput.addEventListener("change", calculateAll);
+    mortgageRateChangeInput.addEventListener("change", calculateAll);
+    rentInflationInput.addEventListener("change", calculateAll);
+
+    function calculateAll() {
+        calculateMinimumDownPayment();
+        calculateFutureValues();
+    }
 
     function calculateMinimumDownPayment() {
         const homePrice = parseFloat(homePriceInput.value);
@@ -55,12 +70,17 @@ document.addEventListener("DOMContentLoaded", function() {
         const monthlyPayment = (mortgageBalance * interestRate) / (1 - Math.pow(1 + interestRate, -numPayments));
         monthlyPaymentInput.value = monthlyPayment.toFixed(2);
 
-        calculateFutureValues();
+        const totalInterestPaid = (monthlyPayment * numPayments) - mortgageBalance;
+        totalInterestPaidNowInput.value = totalInterestPaid.toFixed(2);
+
+        const totalPayments = monthlyPayment * numPayments;
+        totalPaymentsNowInput.value = totalPayments.toFixed(2);
     }
 
     function calculateFutureValues() {
         const homePrice = parseFloat(homePriceInput.value);
-        const yearsToSave = (0.2 * homePrice - parseFloat(minDownPaymentInput.value)) / parseFloat(monthlySavingsInput.value) / 12;
+        const monthlySavings = parseFloat(monthlySavingsInput.value);
+        const yearsToSave = (0.2 * homePrice - parseFloat(minDownPaymentInput.value)) / (monthlySavings * 12);
 
         const futureHomePrice = homePrice * Math.pow(1 + parseFloat(homeValueIncreaseInput.value) / 100, yearsToSave);
         futureHomePriceInput.value = futureHomePrice.toFixed(2);
